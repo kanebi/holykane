@@ -15,6 +15,8 @@ from django.utils import timezone
 from .forms import ShippingAddressesForm, BillingAddressesForm
 # Create your views here.
 
+# s
+
 
 def shop(request):
     eShop = Album.objects.all().order_by('-created_on')
