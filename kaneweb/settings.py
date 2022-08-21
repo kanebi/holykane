@@ -30,7 +30,6 @@ DEBUG = config('DEBUG')
 ALLOWED_HOSTS = [".herokuapp.com", '127.0.0.1',
                  'https://holykane.herokuapp.com/']
 
-
 # Application definition
 INSTALLED_APPS = [
     # 'django.contrib.sites',
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     "whitenoise.runserver_nostatic",
+    'storages',
 
     "corsheaders",
 
@@ -139,6 +139,11 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
+ANYMAIL = {
+    "MAILGUN_API_KEY": "97a42e0e1452d1e8302ca015209ef59c-38029a9d-36f8f109",
+    "MAILGUN_SENDER_DOMAIN": "oneluxery.com"
+}
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -175,11 +180,28 @@ DEFAULT_MONEY_CURRENCY = 'USD'
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 # caching
+
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # no caching
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'kaneprojectstorage'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+DEFAULT_FILE_STORAGE = 'kaneweb.storage_backends.MediaStorage'
 
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'mysite/static'),
+]
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 STATIC_URL = 'static/'
 
@@ -191,6 +213,8 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+
 # STATICFILES_FINDERS = [
 #     'django.contrib.staticfiles.finders.FileSystemFinder',
 #     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
