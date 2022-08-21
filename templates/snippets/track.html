@@ -1,0 +1,52 @@
+{% load pages_tag %}
+{% if detail == True %}
+{% with request|check_fav:song.id as is_fav %}
+
+<li class="group track" id="player-73_5"> <a href="javascript:void()" onclick="handlePlay('{{song.get_serialized}}','{{is_fav}}', 
+'{{song.get_update_streams_url}}',`{% url 'discography:add-to-fav' album.pk song.pk %}`)" data-pk="{{song.pk}}" class="sm2_link li-playbtn playbtn-{{song.pk}}">
+        <span id="icon">
+            <!-- <i class="fa fa-play"> </i> -->
+            <i class="fa fa-pause"></i>
+        </span>
+    </a>
+    <div class="track-info">
+        <p class="item-title-main">{{song.title}}</p>
+        <p class="item-byline">{{song.version}} &nbsp;</p>
+        <ul class="track-buttons">
+
+            {% if song.lyrics %}
+
+
+            <li> <a data-rel="prettyPhoto" href="#{{song.title}}-lyrics-5" title="{{song.title}} Lyrics" class="btn btn-xs"><i class="fa fa-book"></i> <span>Lyrics</span> </a>
+                <div id="{{song.title}}-lyrics-5" class="track-lyrics-hold" style="display:none;">
+                    {{song.lyrics}}</div>
+            </li> {% endif %}
+
+            {% if song.downloadable %}
+
+            <li> <a href="{{song.get_update_downloads_url}}" class="btn btn-xs inline-exclude"><i class="fa fa-download"></i> <span>Download track</span> </a></li>
+            {% endif %}
+
+        </ul> <span class="track-no">{{forloop.counter}}</span>
+    </div>
+</li>
+{% endwith %}
+{% else %}
+{% with request|check_fav:track.id as is_fav %}
+
+<li class="group track pause" id="player-ci-top-tracks-2_1"> <a href="javascript:void()" data-pk="{{track.pk}}" onclick="handlePlay('{{track.get_serialized}}','{{is_fav}}', '{{track.get_update_streams_url}}',`{% url 'discography:add-to-fav' album.pk track.pk %}`)" class="sm2_link li-playbtn playbtn-{{track.pk}}">
+        <span id="icon">
+
+            <!-- <i class="fa fa-play"></i> -->
+            <i class="fa fa-pause"></i>
+
+        </span>
+    </a>
+    <div class="track-info">
+        <p class="item-title-main">{{track.title}}</p>
+        <p class="item-byline">{{track.version}} &nbsp;</p><span class="track-no">{{forloop.counter}}</span>
+    </div>
+</li>
+{% endwith %}
+
+{% endif %}

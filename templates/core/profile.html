@@ -1,0 +1,132 @@
+{% extends "account/base.html" %}
+{% block title %}
+My-account - Profile - {{user.username}} | Holykane Solo
+{% endblock title %}
+
+{% block content %}
+
+<div style="text-align: center;padding: 50px;">
+
+    <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Good to see you!, {{user.username | title}}</h1>
+</div>
+
+{% if user.is_authenticated %}
+
+
+<div style="margin: 10px;">
+    <form method="post" id="profile_frm" enctype="multipart/form-data" class="row g-3 needs-validation">
+        {% csrf_token %}
+        <input type="file" width="100px" id="img_btn" name="picture" hidden class="form-control" accept="image/.png image/.jpeg">
+
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Picture</label>
+
+            {% if user.profile.picture %}
+
+            <input type="image" width="100px" height="100px" style="width: 120px;height: 100px;" class="form-control" id="change_pic" src="{{user.profile.picture.url}}">
+            {% endif %}
+
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">First name</label>
+            <input type="text" class="form-control" name="first_name" id="validationCustom01" value="{{user.first_name}}">
+
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Last name</label>
+            <input type="text" class="form-control" name="last_name" id="validationCustom02" value="{{user.last_name}}">
+
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustomUsername" class="form-label">Username</label>
+            <div class="input-group">
+                <span class="input-group-text" id="inputGroupPrepend" style="position: absolute;">@</span>
+                <input disabled type="text" class="form-control" name="username" value="{{user.username}}" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustomUsername" class="form-label">Email</label>
+            <div class="input-group">
+                <input type="email" class="form-control" name="email" value="{{user.email}}" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="validationCustomUsername" class="form-label">Phone</label>
+            <div class="input-group">
+                <input type="tel" class="form-control" name="phone" value="{{user.profile.phone}}" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+
+            </div>
+        </div>
+
+        <br><br><br>
+        <div class="col-md-12">
+            <label for="validationCustomUsername" class="form-label">Country</label>
+            <div class="input-group">
+                <select class="form-control" name="country" value="{{user.profile.country}}" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
+                    {% for code, country in countries %}
+
+                    {% if code == user.profile.country %}
+                    <option selected="selected" value="{{code}}">{{country}}</option>
+                    {% else %}
+                    <option value="{{code}}">{{country}}</option>
+                    {% endif %}
+
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="d-block col-md-12" style="margin: 10px;">
+            <br><br>
+
+            <button class="btn btn-primary" type="submit">Update Profile</button>
+        </div>
+    </form>
+</div>
+{% endif %}
+
+{% block js %}
+<script>
+    jQuery('#change_pic').on('click', (e) => {
+        e.preventDefault()
+        jQuery('#img_btn').click()
+
+    })
+    jQuery('#img_btn').on('change', (e) => {
+
+        var img_src = URL.createObjectURL(e.target.files[0]);
+        jQuery('#change_pic').attr('src', img_src)
+    })
+
+    jQuery('#profile_frm').on('submit', (e) => {
+
+        e.preventDefault()
+        var frm = new FormData(document.querySelector('#profile_frm'))
+        jQuery.ajax({
+            type: jQuery('#profile_frm').attr('method'),
+            url: jQuery('#profile_frm').attr('action'),
+            data: frm,
+            type: 'post',
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (response) {
+                jQuery('body').html(response)
+            },
+            error: function (response) {
+                jQuery('body').html(response.responseText)
+            },
+            complete: (v, s) => {
+                document.querySelector('#profile_frm').scrollIntoView()
+            }
+
+        });
+    })
+</script>
+{% endblock js %}
+
+
+{% endblock content %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+Album details | {{album.title}}| Holykane solo
+{% endblock title %}
+
+
+{% block content %}
+
+
+<main id="main">
+    <div class="container">
+        <article id="entry-73" class="entry post-73 cpt_discography type-cpt_discography status-publish has-post-thumbnail hentry section-albums">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="section-title">{{album.title}}</h1>
+                </div>
+                <div class="col-md-4 col-sm-5 col-xs-12 col-md-push-8 col-sm-push-7">
+                    <div class="sidebar">
+                        <div class="item"><a data-rel="prettyPhoto" class="zoom" href="{{album.cover.url}}">
+                                <figure class="item-thumb"> <img width="750" height="750" src="{{album.cover.url}}" class="attachment-ci_masonry size-ci_masonry wp-post-image" alt="" loading="lazy" srcset="
+                                {{album.cover.url}} 750w, {{album.cover.url}} 300w, {{album.cover.url}} 150w, {{album.cover.url}} 100w, {{album.cover.url}} 110w, {{album.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                            </a>
+                            <table class="item-meta">
+                                <tbody>
+                                    <tr>
+                                        <th>Release Date</th>
+                                        <td>{{album.release_date | date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Record Label</th>
+                                        <td>{{album.record_label}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Catalog Number</th>
+                                        <td>{{album.catalog_number}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>AVAILABLE NOW AT</th>
+                                        <td><a href="{{album.shop_link}}">{{album.shop_link}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-12 col-md-pull-4 col-sm-pull-5">
+                    <div class="entry-content">
+                        <ul class="tracklisting">
+                            {% for song in album.songs.all %}
+
+                            {% include "snippets/track.html" with detail=True album=album %}
+                            {% endfor %}
+
+                        </ul>
+                        {{album.description | safe}}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,67 @@
+.fluid-width-video-preview {
+	position: relative;
+	background-color: #333;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	box-shadow: inset 0 0 200px rgba(0,0,0,1);
+	cursor: pointer;
+	transition: all 150ms ease-out;
+}
+
+.fluid-width-video-preview:hover {
+	box-shadow: inset 0 0 400px rgba(0,0,0,1);
+}
+
+.fluid-width-video-preview .play-button {
+	background-color: #000;
+	box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+	z-index: 1;	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	color: #FFFFFF;
+	font-size: 1em; 
+	height: 3em;
+	width: 4em;
+	padding: 0;
+	text-align: center;
+	text-indent: 0.1em;
+	transition: all 150ms ease-out;
+}
+
+.fluid-width-video-preview-youtube .play-button {
+	background-color: #ff001e;
+	border-radius: 50% / 10%;
+}
+
+.fluid-width-video-preview-vimeo .play-button {
+	background-color: #00ADEF;
+	border-radius: 3px
+}
+
+.fluid-width-video-preview .play-button::after {
+	border-style: solid;
+	border-width: .75em 0 .75em 1.2em;
+	border-color: transparent transparent transparent #fff;
+	content: ' ';
+	font-size: 0.75em;
+	height: 0;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	position: absolute;
+	width: 0;
+}
+
+.fluid-width-video-preview-youtube .play-button::before { 
+	background: inherit;
+	border-radius: 5% / 50%;
+	bottom: 9%;
+	content: "";
+	left: -5%;
+	position: absolute;
+	right: -5%;
+	top: 9%;
+}

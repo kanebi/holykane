@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+{% load shop_tags %}
+{% load crispy_forms_tags %}
+{% load shop_tags %}
+
+{% block title %}
+
+Checkout - Holykane - Solo Artist
+{% endblock title %}
+
+
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-75">
+
+                <div class="container">
+                    <div class="alrt-msg" style="color: red;" role="alert">
+                        {{shipping_form.non_field_errors}}
+                        {{form_errors | safe}}
+                    </div>
+
+                    <form id='shipping_addr_form' method="post" action="{% url 'shop:checkout' %}">
+
+                        <div id="shipping_form">
+                            <div class="row">
+                                <div class="col-50">
+
+                                    <h3>Shipping Address</h3>
+
+                                    {% csrf_token %}
+                                    {{shipping_form | crispy}}
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" style="display: none;" hidden="true" id="submit_shipping_adr">
+
+                    </form>
+
+                    {% if default_shipping_address != None %}
+                    <div id="default_s_adr" style="padding: 10px;display: none;color: aliceblue; border: 1px solid palevioletred;border-radius: 10px;">
+                        <table>
+                            <th>
+                                <h3>Using Default Shipping Address</h3>
+                            </th>
+                            <tr>
+                                <td>
+
+                                    Full Name
+                                </td>
+                                <td>
+
+                                    State
+                                </td>
+                                <td>
+
+                                    Country
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{default_shipping_address.full_name}}
+                                </td>
+                                <td>
+                                    {{default_shipping_address.state}}
+                                </td>
+                                <td>
+                                    {{default_shipping_address.country}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <input type="checkbox" id="use_default_sh_adr" name="use_default_shipping">use default shipping address
+                    <br>
+                    <br>
+                    {% endif %}
+
+                    <form id='billing_addr_form' method="post" action="{% url 'shop:checkout' %}">
+
+                        {% csrf_token %}
+                        <div id="billing_form">
+
+
+                            <div class="row">
+
+                                <div class="col-50">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" hidden="true" style="display: none;" id="submit_billing_adr">
+                    </form>
+                    {% if default_billing_address != None %}
+                    <div id="default_b_adr" style="padding: 10px;display: none;color: aliceblue;border:1px solid palevioletred;border-radius: 10px;">
+                        <table>
+                            <th>
+                                <h3>Using Default Billing Address</h3>
+                            </th>
+                            <tr>
+                                <td>
+
+                                    Full Name
+                                </td>
+                                <td>
+
+                                    State
+                                </td>
+                                <td>
+
+                                    Country
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{default_billing_address.full_name}}
+                                </td>
+                                <td>
+                                    {{default_billing_address.state}}
+                                </td>
+                                <td>
+                                    {{default_billing_address.country}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <input type="checkbox" id="use_default_bl_adr" name="use_default_billing">use default billing address
+                    <br>
+                    <br>
+
+                    {% endif %}
+                </div>
+
+            </div>
+            <label>
+                <input type="checkbox" id="id_adr" checked="checked" name="same_as_b"> Shipping address same as billing
+            </label>
+            <input type="submit" id="submit_btn" value="Continue to checkout" class="btn">
+
+
+            <hr>
+
+            <div class="col-25">
+                <div class="container">
+                    {% with request|get_user_cart as cart %}
+
+                    <h4>Cart <span class="price" style="color:rgb(243, 192, 192)"><i class="fa fa-shopping-cart"></i> <b>{{cart.count}}</b></span></h4>
+
+                    {% if cart.count >= 1 %}
+                    {% for cart_item in cart.all %}
+                    <div class="list-group">
+
+                        <p><a href="{{cart_item.item.get_shop_url}}" class="list-group-item list-group-item-action">{{cart_item.item.title}} </a> <span class="price">------ {{cart_item.get_final_sum_price}}</span></p>
+                        {% endfor %}
+
+                        <p>Total <span class="price" style="color:rgb(238, 238, 238)"><b>{{cart.final_total_sum}}</b></span></p>
+                        {% endif %}
+                        <hr>
+
+                        {% endwith %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+<div class="b_adr-cont" style="display: none;">
+
+    <div class='b_adr' style="display: none;">
+        <br>
+        <br>
+        <h3>Billing Address</h3>
+        <div class="row">
+
+            <div class="col-50">
+                {{billing_form | crispy}}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) c_end = document.cookie.length;
+                return unescape(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+
+    function handleFormRequest() {
+        var billingForm = jQuery('#billing_addr_form').serializeArray()
+        var shippingForm = jQuery('#shipping_addr_form').serializeArray()
+        const finalShippingForm = {}
+        const finalBillingForm = {}
+        for (let field of shippingForm) {
+            finalShippingForm[field['name']] = field['value']
+        }
+        for (let field of billingForm) {
+            finalBillingForm[field['name']] = field['value']
+        }
+        jQuery.ajax({
+            url: jQuery('#shipping_addr_form').attr('action'), method: jQuery('#shipping_addr_form').attr('method'),
+            headers: { "X-CSRFToken": getCookie("csrftoken") },
+            data: {
+                'billing_form': JSON.stringify(finalBillingForm), 'shipping_form': JSON.stringify(finalShippingForm), 'no_billing': document.getElementById('id_adr').checked,
+                'use_default_billing': document.getElementById('use_default_bl_adr') ? document.getElementById('use_default_bl_adr').checked : false,
+                'use_default_shipping': document.getElementById('use_default_sh_adr') ? document.getElementById('use_default_sh_adr').checked : false
+            },
+            success: (resp) => {
+                jQuery('body').html(resp)
+
+            },
+            error: (resp) => {
+                jQuery('body').html(resp.responseText)
+
+            }
+
+        })
+
+    }
+
+    jQuery('#shipping_addr_form').on('submit', (e) => {
+
+        e.preventDefault()
+        if (document.getElementById('id_adr').checked === false) {
+
+            jQuery('#submit_billing_adr').click()
+
+        }
+        else {
+            handleFormRequest()
+
+        }
+
+    })
+    jQuery('#billing_addr_form').on('submit', (e) => {
+
+        e.preventDefault()
+
+        handleFormRequest()
+    })
+
+    jQuery('#submit_btn').on('click', (e) => {
+        e.preventDefault()
+        jQuery('#submit_shipping_adr').click()
+    })
+
+
+
+    jQuery('#id_adr').on('change', (e) => {
+        if (e.target.checked === false) {
+
+            jQuery('#billing_form').html(jQuery('.b_adr'))
+            jQuery('.b_adr').fadeIn()
+            document.getElementById('billing_form').scrollIntoView()
+
+        }
+        else {
+            jQuery('.b_adr').fadeOut()
+            jQuery('.b_adr-cont').html(jQuery('.b_adr'))
+
+            jQuery('#billing_form').html('')
+            document.getElementById('shipping_form').scrollIntoView()
+        }
+
+    })
+
+    jQuery('#use_default_bl_adr').on('change', (e) => {
+        if (e.target.checked === true) {
+            jQuery('#billing_addr_form').attr('novalidate', true)
+
+            jQuery('#billing_form').fadeOut();
+            jQuery('#default_b_adr').fadeIn();
+            // document.getElementById('billing_form').scrollIntoView()
+
+        }
+        else {
+            jQuery('#billing_addr_form').removeAttr('novalidate')
+
+            jQuery('#billing_form').fadeIn();
+            jQuery('#default_b_adr').fadeOut();
+
+        }
+
+    })
+    jQuery('#use_default_sh_adr').on('change', (e) => {
+        if (e.target.checked === true) {
+
+            jQuery('#shipping_addr_form').attr('novalidate', true);
+            jQuery('#shipping_form').fadeOut();
+            jQuery('#default_s_adr').fadeIn();
+            document.getElementById('shipping_form').scrollIntoView()
+
+
+        }
+        else {
+            jQuery('#shipping_addr_form').removeAttr('novalidate');
+
+            jQuery('#shipping_form').fadeIn();
+            jQuery('#default_s_adr').fadeOut();
+
+        }
+
+    })
+
+</script>
+
+{% endblock content %}

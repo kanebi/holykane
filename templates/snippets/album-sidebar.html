@@ -1,0 +1,96 @@
+{% load disco_tags %}
+{% load blog_tags %}
+
+<div class="sidebar">
+    {% with request|get_latest_EP as latest_album %}
+
+    <aside id="ci-tracklisting-3" class="widget_ci-tracklisting widget group">
+        <div class="widget-wrap ">
+            <h3 class="widget-title">LATEST EP</h3>
+            <div class="row">
+                <div class=" col-xs-12"> <a class="item-hold" href="{{latest_album.get_absolute_url}}">
+                        <figure class="item-thumb"> <img width="750" height="750" src="{{latest_album.cover.url}}" class="attachment-ci_square size-ci_square wp-post-image" alt="" loading="lazy" srcset="{{latest_album.cover.url}} 
+                        750w, {{latest_album.cover.url}} 300w, {{latest_album.cover.url}} 150w, {{latest_album.cover.url}} 100w, {{latest_album.cover.url}} 110w, {{latest_album.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                    </a><a class="btn item-btn" href="{{latest_album.get_absolute_url}}">Read More »</a></div>
+                <div class=" col-xs-12">
+
+                    <ul class="tracklisting">
+                        {% for track in latest_album.songs.all %}
+
+                        <li class="group track" id="player-73_1"> <a href="{{track.audio.url}}" class="sm2_link"><i class="fa fa-play"></i></a>
+                            <div class="track-info">
+                                <p class="item-title-main">{{track.title}}</p>
+                                <p class="item-byline">{{track.version}} &nbsp;</p> <span class="track-no">{{forloop.counter}}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+    {% endwith %}
+
+    <aside id="search-2" class="widget_search widget group">
+        <h3 class="widget-title">Search</h3>
+        <form action="{% url 'discography:search' %}" method="get" role="search" class="searchform">
+            <div> <label for="s" class="screen-reader-text">Search for:</label> <input type="text" id="s" name="q" value="" placeholder="SEARCH"> <button type="submit" value="GO" class="searchsubmit"><i class="fa fa-search"></i></button></div>
+        </form>
+    </aside>
+    <aside id="categories-2" class="widget_categories widget group">
+        <h3 class="widget-title">Categories</h3>
+        <ul>
+            {% with request|get_blog_categories as categories %}
+
+            {% for category in categories %}
+
+            <li class="cat-item cat-item-24"><a href="{{category.get_absolute_url}}">{{category.title}}</a></li>
+            {% endfor %}
+            {% endwith %}
+
+        </ul>
+    </aside>
+    <aside id="socials-ignited-3" class="widget_socials_ignited widget group">
+        <h3 class="widget-title">Social Me</h3>
+        <div class="ci-socials-ignited ci-socials-ignited-fa"><a href="https://www.instagram.com/holy_kane/" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i></a>
+            <a href="#" target="_blank" rel="nofollow"><i class="fa fa-linkedin">
+                </i></a><a href="#" target="_blank" rel="nofollow"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/oh_holykane" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a><a href="https://www.youtube.com/channel/UCqaX45IOEo89P1EMhr0g8oA" target="_blank" rel="nofollow"><i class="fa fa-youtube"></i></a>
+        </div>
+
+    </aside>
+    <aside id="ci-top-tracks-2" class="widget_ci-top-tracks widget group">
+
+        <div class="widget-wrap ">
+            {% with request|get_user_favourites as favourites %}
+
+            {% if favourites %}
+
+
+            <h3 class="widget-title">My Favorite Tracks</h3>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="tracklisting tracklisting-top">
+
+                        {% for fav in favourites %}
+
+                        {% for song in fav.songs.all %}
+
+                        {% include "snippets/track.html" with track=song album=fav.album %}
+                        {% endfor %}
+
+                        {% endfor %}
+
+
+
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            {% endwith %}
+
+        </div>
+    </aside>
+</div>

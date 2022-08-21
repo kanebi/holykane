@@ -1,0 +1,147 @@
+{% load static %}
+{% load disco_tags %}
+
+
+
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="shop-actions group">
+                    <div class="actions">
+
+                        <p class="woocommerce-result-count"> Showing all {{products | length}} Products </p>
+                        <div class="product-number"> <span>View:</span>
+                            {% for page in paginator.page_range %}
+
+                            <a class="paginatorbtn" href="?&flt=True&paged={{page}}">{{page}}</a>
+                            {% endfor %}
+
+                            <!-- <a href="?view=all">All</a> -->
+                        </div><br><small> page {{page}} of {{paginator.num_pages}} page(s)</small>
+                    </div>
+                    <div class="woocommerce-notices-wrapper"></div>
+                    <form class="woocommerce-ordering" id="sort_form" method="get">
+                        {% csrf_token %}
+                        <select name="orderby" aria-label="Shop order">
+                            <option value="{{orderby}}" selected='selected'>{{orderby}} sorting</option>
+                            <option value="popularity">Sort by popularity</option>
+                            <option value="rating">Sort by average rating</option>
+                            <option value="date">Sort by latest</option>
+                            <option value="price">Sort by price: low to high</option>
+                            <option value="price-desc">Sort by price: high to low</option>
+                        </select> <input type="hidden" name="paged" value="1" />
+                        <!-- <button type="submit" hidden></button> -->
+                    </form>
+                </div>
+                <div class="product-list item-list row">
+
+                    {% include "snippets/products.html" %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="sidebar">
+                    <aside id="woocommerce_product_search-2" class="woocommerce widget_product_search widget group">
+                        <h3 class="widget-title">Search Products</h3>
+                        <form role="search" method="get" class="woocommerce-product-search searchform" action="{% url 'discography:search' %}">
+                            <div> <label class="screen-reader-text" for="woocommerce-product-search-field-0">Search for:</label> <input type="search" id="woocommerce-product-search-field-0" class="search-field" placeholder="Search products&hellip;" value="" name="q" /> <button class="searchsubmit" type="submit" value="Search"><i class="fa fa-search"></i><span class="screen-reader-text">Search</span></button> <input type="hidden" name="post_type" value="product" /></div>
+                        </form>
+                    </aside>
+                    <aside id="woocommerce_price_filter-2" class="woocommerce widget_price_filter widget group">
+                        <h3 class="widget-title">Filter by price</h3>
+                        <form method="post" id="price_form">
+                            {% csrf_token %}
+
+                            <div class="price_slider_wrapper">
+                                <div class="price_slider" style="display:none;"></div>
+                                <div class="price_slider_amount" data-step="10"> <input type="text" id="min_price" name="min_price" value="{{min_price}}" data-min="{{min_price}}" placeholder="Min price" /> <input type="text" id="max_price" name="max_price" value="{{max_price}}" data-max="{{max_price}}" placeholder="Max price" />
+                                    <button type="submit" class="button" id="price_btn">Filter <i class="fa fa-filter" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="price_label" style="display:none;"> Price: <span class="from"></span> &mdash; <span class="to"></span></div>
+                                    <div class="clear " id="clear_flt" title="Clear " style="float:right;margin-top:13px;font-size:15px;cursor:pointer">
+                                        <i class="fa fa-repeat" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+                    <aside id="woocommerce_products-2" class="woocommerce widget_products widget group">
+                        <h3 class="widget-title">Products</h3>
+                        <ul class="product_list_widget">
+                            {% for prd in otherProducts %}
+
+                            <li class="media">
+                                <div class="media-thumb"> <a href="{{prd.get_shop_url}}" title="Wheresoever you go"> <img width="438" height="438" src="{{prd.cover.url}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="{{prd.cover.url}} 438w, {{prd.cover.url}} 300w, 
+                                                        {{prd.cover.url}} 150w,
+                                                        {{prd.cover.url}} 100w,
+                                                        {{prd.cover.url}} 110w" sizes="(max-width: 438px) 100vw, 438px" /> </a></div>
+                                <div class="media-content"> <a class="media-title" href="{{prd.get_shop_url}}"> {{prd.title}} </a>
+                                    {% if prd.discount_price %}
+
+                                    <p class="price"> <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi>
+                                                    {{prd.price}}</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi>
+                                                    {{prd.discount_price}}</bdi></span></ins></p>
+                                    {% else %}
+                                    {{prd.price}}</bdi></span></ins></p>
+
+                                    {% endif %}
+
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% block js %}
+<script>
+
+
+    jQuery('#price_btn').on('click', (e) => {
+        e.preventDefault()
+        jQuery('#main').load(window.location.toString() + '?&flt=True&', jQuery('#price_form').serialize())
+    })
+
+    jQuery('#sort_form').on('change', (e) => {
+        e.preventDefault()
+        jQuery('#main').load(window.location.toString() + '?&flt=True&', jQuery('#sort_form').serialize())
+
+    })
+
+    jQuery('#clear_flt').on('click', (e) => {
+        e.preventDefault()
+        jQuery('#main').load(window.location.toString() + '?&clr=True')
+
+    })
+
+    for (let index = 0; index < jQuery('.paginatorbtn').length; index++) {
+        const element = jQuery('.paginatorbtn')[index];
+        jQuery(element).on('click', (e) => {
+            e.preventDefault()
+            jQuery('#main').load(window.location.toString() + jQuery(element).attr('href'))
+
+        })
+
+    }
+
+
+
+
+
+
+
+</script>
+<script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/jquery/ui/core.min-1.12.1.js" %}' id='jquery-ui-core-js' defer></script>
+<script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/jquery/ui/mouse.min-1.12.1.js" %}' id='jquery-ui-mouse-js' defer></script>
+<script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/jquery/ui/slider.min-1.12.1.js" %}' id='jquery-ui-slider-js' defer></script>
+<script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/jquery-ui-touch-punch/jquery-ui-touch-punch.min-5.0.1.js" %}' id='wc-jquery-ui-touchpunch-js' defer></script>
+<script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/accounting/accounting.min-0.4.2.js" %}' id='accounting-js' defer></script>
+<script type='text/javascript' id='wc-price-slider-js-extra'>/* <![CDATA[ */ var woocommerce_price_slider_params = { "currency_format_num_decimals": "0", "currency_format_symbol": "$", "currency_format_decimal_sep": ".", "currency_format_thousand_sep": ",", "currency_format": "%s%v" }; /* ]]> */</script>
+<script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/frontend/price-slider.min-5.0.1.js" %}' id='wc-price-slider-js' defer></script>
+
+{% endblock js %}

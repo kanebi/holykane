@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+Event {{event.title}} | Holykane
+
+{% endblock title %}
+{% block content %}
+
+<body class="cpt_event-template-default single single-cpt_event postid-107 theme-chords woocommerce-no-js ci-chords ci-chords-2-7-0 ci-scheme-default ci-dark-scheme">
+
+    <main id="main">
+        <div class="container">
+            <article id="entry-40" class="entry post-40 cpt_event type-cpt_event status-publish has-post-thumbnail hentry event-category-live">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="section-title">{{event.title}}</h1>
+                    </div>
+                    <div class="col-md-4 col-sm-5 col-xs-12 col-md-push-8 col-sm-push-7">
+                        <div class="sidebar">
+                            <div class="item"> <a data-rel="prettyPhoto" class="zoom" href="{{event.cover.url}}">
+                                    <figure class="item-thumb"> <img width="750" height="500" src="
+                                {{event.cover.url}}" class="attachment-ci_masonry size-ci_masonry wp-post-image" alt="" loading="lazy" srcset="{{event.cover.url}} 750w, {{event.cover.url}} 300w, {{event.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                                </a>
+
+                                {% if event.timeLeft.minutes >= 0 %}
+
+
+                                <div class="item-timer">
+                                    <div class="count"> <b>{{event.timeLeft.days | truncatechars:5}}</b> <span>Days</span></div>
+                                    <div class="count"> <b>{{event.timeLeft.hour| truncatechars:5}}</b> <span>Hours</span></div>
+                                    <div class="count"> <b>{{event.timeLeft.minutes| truncatechars:5}}</b> <span>Minutes</span></div>
+                                </div>
+                                {% endif %}
+
+                                <table class="item-meta">
+                                    <tbody>
+                                        <tr>
+                                            <th>Date</th>
+                                            <td>{{event.date_time | date}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Time</th>
+                                            <td>{{event.date_time | time}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Location</th>
+                                            <td>{{event.location}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Venue</th>
+                                            <td>{{event.venue}}</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <th></th>
+                                            <td class="action"> <a class="btn" href="{{event.link}}">Watch Live</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-7 col-xs-12 col-md-pull-4 col-sm-pull-5">
+                        <div id="map" class="map"></div>
+                        <script type="text/javascript">
+                            var map = new ol.Map({
+                                target: 'map',
+                                layers: [
+                                    new ol.layer.Tile({
+                                        source: new ol.source.OSM()
+                                    })
+                                ],
+                                view: new ol.View({
+                                    center: ol.proj.fromLonLat(['{{event.map_longitude}}', '{{event.map_latitude}}']),
+                                    zoom: 4
+                                })
+                            }); alert(['{{event.map_longitude}}', '{{event.map_latitude}}'])
+
+                        </script>
+
+                        <div class="entry-content">
+                            {{event.content | safe}} </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+</body>
+{% endblock content %}

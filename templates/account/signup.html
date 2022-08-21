@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Register/Login | | Holykane Solo Artist
+{% endblock title %}
+{% block content %}
+
+
+
+
+
+<body class="page-login pageType-ContentPage template-pages-LoginPageTemplate pageLabel-login smartedit-page-uid-login smartedit-page-uuid-eyJpdGVtSWQiOiJsb2dpbiIsImNhdGFsb2dJZCI6Ik1heW9yc19VU19Db250ZW50Q2F0YWxvZyIsImNhdGFsb2dWZXJzaW9uIjoiT25saW5lIn0= smartedit-catalog-version-uuid-Mayors_US_ContentCatalog/Online  language-en_US loggedIn-false" data-page-type="ContentPage" data-currency="de.hybris.platform.commercefacades.storesession.data.CurrencyData@406d66bb">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- End Google Tag Manager (noscript) -->
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">submit</button>
+    </form>
+</body>
+
+
+{% endblock %}
+{% endcomment %}
+{% block title %}
+Register/Login | Holykane Solo
+{% endblock title %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<body class="page-login pageType-ContentPage template-pages-LoginPageTemplate pageLabel-login smartedit-page-uid-login smartedit-page-uuid-eyJpdGVtSWQiOiJsb2dpbiIsImNhdGFsb2dJZCI6Ik1heW9yc19VU19Db250ZW50Q2F0YWxvZyIsImNhdGFsb2dWZXJzaW9uIjoiT25saW5lIn0= smartedit-catalog-version-uuid-Mayors_US_ContentCatalog/Online  language-en_US loggedIn-false" data-page-type="ContentPage" data-currency="de.hybris.platform.commercefacades.storesession.data.CurrencyData@406d66bb">
+    <div class='text-center' style="margin: 0 auto;margin-top:100px;width:60%">
+        <!-- Google Tag Manager (noscript) -->
+        <button class="nav-link active d-block" id="tab-login" data-mdb-toggle="pill" role="tab" aria-controls="pills-login" aria-selected="true">Login</button>
+
+        <button class="nav-link d-block " id="tab-register" data-mdb-toggle="pill" role="tab" aria-controls="pills-register" aria-selected="false">Register</button>
+        <br><br>
+
+        <!-- Pills navs -->
+
+        <!-- Pills content -->
+
+        <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+
+                {% if form.non_field_errors %}
+
+
+                <div class="alert alert-error alert-dismissible fade show" role="alert">
+
+                    <strong>{{form.non_field_errors}}</strong>
+                </div>
+                {% endif %}
+
+                <script>
+                    jQuery(".alert").alert();
+                </script>
+                <form method="post" action="{% url 'account_signup' %}" id="registerForm">
+                    {% csrf_token %}
+                    <div class="text-center mb-3">
+                        <div class="row mb-4">
+                            {% for fields in form %}
+                            {% if forloop.counter <= 2 %} <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="col">
+
+                                    <div class=" mb-4">
+                                        {{fields}}
+
+                                        <label class="form-label" for="form6Example4">{{fields.label}}</label>
+                                    </div>
+                                    <small class="alert-danger">{{fields.errors}}</small>
+
+                                </div>
+                                {% else %}
+                                <div class="mb-4">
+                                    {{fields}}
+
+
+                                    <label class="form-label" for="form6Example4">{{fields.label}}</label>
+                                </div>
+                                <small class="alert-danger">{{fields.errors}}</small>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input required class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" />
+                            <label class="form-check-label" for="registerCheck">
+                                I have read and agree to the terms
+                            </label>
+                        </div>
+                        <!-- Submit button -->
+                        <button class="btn btn-primary btn-block mb-3">Sign in</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- Pills content -->
+    <br><br>
+</body>
+
+
+{% endblock %}

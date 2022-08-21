@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+Discography -all|| Holykane Songs || Holykane
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="section-title">Discography</h3>
+                <div class="row item-list ">
+                    {% for album in albums %}
+
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        <div class="item post-96 cpt_discography type-cpt_discography status-publish has-post-thumbnail hentry section-singles"> <a href="{{album.get_absolute_url}}" class="item-hold">
+                                <figure class="item-thumb"> <img width="750" height="750" src="{{album.cover.url}}" class="attachment-ci_square size-ci_square wp-post-image" alt="" loading="lazy" srcset="{{album.cover.url}} 750w, {{album.cover.url}} 300w,
+                                {{album.cover.url}} 150w, {{album.cover.url}} 100w, {{album.cover.url}} 110w, {{album.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-main">{{album.title}}</p>
+                                <p class="item-byline">{{album.record_label}}</p>
+                            </div><a class="btn item-btn" href="{{album.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <center>
+                        Nothing to show
+
+                    </center>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

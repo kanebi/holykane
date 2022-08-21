@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+Video By Category| Holykane solo
+{% endblock title %}
+
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="section-title">Videos - {{category}}</h3>
+                <div class="row item-list ">
+
+                    {% for video in videos %}
+
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        <div class="item post-155 cpt_video type-cpt_video status-publish has-post-thumbnail hentry video-category-guests video-category-live video-category-shows"> <a href="{{video.get_absolute_url}}" class="item-hold">
+                                <figure class="item-thumb"> <img width="750" height="500" src="{{video.cover.url}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-main">{{video.title}}</p>
+                                <p class="item-byline">{{video.location}}</p>
+                            </div><a class="btn item-btn" href="{{video.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <center>
+                        Nothing to show
+
+                    </center>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

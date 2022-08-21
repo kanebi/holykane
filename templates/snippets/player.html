@@ -1,0 +1,1009 @@
+{% load pages_tag %}
+{% load static %}
+<style>
+    .player-cont a {
+        text-decoration: none;
+    }
+
+    :root {
+        font-size: 14px;
+        font-family: 'Roboto', sans-serif;
+
+        --bg: #EBEBEB;
+        --black: #333333;
+        --prog: #A4B7BE;
+
+    }
+
+    .player-cont .player {
+        width: 100%;
+        max-width: 275px;
+        min-height: 550px;
+        margin: 2rem auto;
+        overflow: hidden;
+        padding: 3rem 1.25rem;
+        background: var(--bg);
+        box-shadow: 20px 20px 60px #c8c8c8,
+            -20px -20px 60px #ffffff;
+        border-radius: 15px;
+        border: 1px solid rgb(223, 223, 223);
+        position: relative;
+    }
+
+    @media only screen and (max-width:800px) {
+
+
+        .player .header {
+            position: absolute;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .player-cont {
+            overflow: hidden;
+            background-color: black;
+            max-width: 100%;
+            width: inherit !important;
+        }
+
+
+        .player-cont .player {
+
+            position: fixed;
+            margin: 0;
+            max-width: inherit !important;
+            bottom: 0px;
+            min-height: 80px;
+            height: 80px !important;
+        }
+
+        .player-main-cont {
+
+            top: 30px;
+            margin: 0 !important;
+
+            width: inherit !important;
+
+        }
+
+    }
+
+
+    .player-cont .player::before {
+
+        content: '';
+        display: block;
+        background: #333;
+        width: 100px;
+        height: 20px;
+        border-radius: 0 0 50% 50%;
+        position: absolute;
+        top: 0;
+        cursor: pointer;
+
+        left: 87px;
+
+    }
+
+    .player-cont .header {
+        height: 40px;
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .player-cont .header>.button {
+        width: 2rem;
+        height: 2rem;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        color: var(--black);
+        background: linear-gradient(145deg, #fbfbfb, #d4d4d4);
+        box-shadow: 4px 4px 7px #cccccc,
+            -4px -4px 7px #ffffff;
+        border-radius: 6px;
+    }
+
+    .player-cont .art {
+        display: block;
+        width: 175px;
+        height: 175px;
+        margin: 1rem auto;
+        border-radius: 50%;
+        border: 4px solid #EBEBED;
+        box-shadow: 16px 16px 57px #acacac,
+            -16px -16px 57px #ffffff;
+    }
+
+    .player-cont .info {
+        margin: 1.5rem 0;
+        text-align: center;
+    }
+
+    .player-cont .info h1 {
+        color: var(--black);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .player-cont .info p {
+        font-size: 1.15rem;
+        color: var(--prog);
+    }
+
+    /* .player-cont .prog {
+        padding: 10px 0;
+    } */
+
+    .player-cont .prog-time {
+        padding: 3px 5px;
+        color: var(--prog);
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .player-cont .prog-time>p {
+        font-size: 0.65rem;
+    }
+
+    /* .player-cont .prog-bar {
+        width: 100%;
+        height: 10px;
+        padding: 1px;
+        border-radius: 25px;
+
+        background: linear-gradient(145deg, #fbfbfb, #d4d4d4);
+        box-shadow: 5px 5px 10px #a5a5a5,
+            -5px -5px 10px #ffffff;
+
+    } */
+
+    /* .player-cont .prog-bar-inner {
+        height: 8px;
+        background: var(--prog);
+        border-radius: 25px;
+    } */
+
+    .player-cont .buttons {
+        margin: 2rem 0;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .player-cont .button {
+        color: var(--prog);
+        border-radius: 50%;
+        margin: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 5px 10px #d4d4d4,
+            -5px -5px 10px #ffffff;
+    }
+
+    .player-cont .button-sm {
+        width: 2rem;
+        height: 2rem;
+        opacity: 0.75;
+    }
+
+    .player-cont .button-md {
+        width: 2.5rem;
+        height: 2.5rem;
+        opacity: 0.85;
+    }
+
+    .player-cont .button-lg {
+        width: 3.25rem;
+        height: 3.25rem;
+        box-shadow: inset 6px 6px 12px #c8c8c8,
+            inset -6px -6px 12px #ffffff
+    }
+
+
+    .player-cont .bar {
+        width: 50%;
+        height: 2px;
+        margin: auto;
+        background: var(--prog);
+        border-radius: 25px;
+        position: absolute;
+        left: 25%;
+        bottom: 1rem;
+    }
+
+    .player-cont .credit {
+        background: linear-gradient(45deg, #3297D3, #8FEFFB);
+        color: var(--black);
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .player .activebtn {
+        background-color: inherit;
+    }
+
+    .player-cont .art {
+        /* animation: rolling-disk 7.5s 0.25s linear infinite; */
+    }
+
+    /* .player-cont .prog-bar-inner {
+        animation: timer 30s linear 0.1s;
+    } */
+
+
+    /*      keyframes   */
+    @keyframes timer {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+
+    @keyframes rolling-disk {
+        0% {
+            transform: rotate(0);
+        }
+
+        100% {
+            transform: rotate(1turn);
+        }
+    }
+
+    .faved {
+        color: rgb(221, 64, 90) !important;
+        background-color: #333;
+    }
+</style>
+
+{% with request|get_homepage as homepage %}
+
+<div class="player-cont" style="z-index: 10;">
+    <main class="player " id="resizeMe" style="user-select: none;">
+
+        <div class="sizer" style="cursor:row-resize;height: 30px; position: absolute;top: 0;width: 100%; max-width: 100%;padding: 5px;"></div>
+        <div class="header">
+
+            <a href="javascript:void()" class="button favBtn " data-track-fav-url="/">
+                <i class="fa fa-heart" aria-hidden="true"></i> <span class="sr-only">Favourite</span>
+            </a>
+            <p>Now Playing </p>
+            <a href="javascript:void()" class="button closeBtn">
+                <i class="fa fa-close" aria-hidden="true"></i> <span class="sr-only">Close</span>
+            </a>
+
+        </div><!--  header  -->
+        <div class="desktop-player">
+
+            <img src="{% static 'img/default-disc.png' %}" alt="album art" class="art">
+            <!--  art  -->
+            <div class="info">
+                <h1 class="s-track-title"></h1>
+                <p class="s-track-artist"></p>
+            </div><!--  info  -->
+            <div class="prog">
+                <div class="prog-time">
+                    <p id="time-current" class="left">0:00</p>
+                    <p id="time-total" class="right">0:06</p>
+                </div>
+                <div class="prog-bar">
+                    <div class="prog-bar-inner"></div>
+                </div>
+            </div><!--  progress  -->
+            <ul class="buttons" style="margin: 0;">
+                <a href="javascript:void()" title="mute/unmute" class="button button-sm mutebtn">
+                    <i class="fas fa-volume-mute    "></i> <span class="sr-only">
+
+                        Mute</span>
+                </a>
+                <a href="javascript:void()" class="button button-md prev-track">
+                    <i class="fa fa-backward" aria-hidden="true"></i> <span class="sr-only">Previous Music</span>
+                </a>
+
+                <a href="javascript:void()" class="button button-lg playbtn">
+                    <span id="icon"> <i class="fa fa-play" aria-hidden="true"></i>
+                    </span>
+                    <span class="sr-only">Play</span>
+                </a>
+                <a href="javascript:void()" class="button button-md next-track">
+                    <i class="fa fa-forward" aria-hidden="true"></i>
+                    <span class="sr-only">Next Music</span>
+                </a>
+                <a href="javascript:void()" class="button button-sm repeat">
+                    <span id="icon">
+                        <i class="fa fa-repeat" aria-hidden="true"></i></span> <span class="sr-only">Repeat Song</span>
+                </a>
+            </ul><!--  buttons  -->
+            <div class="bar sizer" style="cursor:row-resize"></div><!--  bar  -->
+        </div>
+
+
+    </main>
+    <div class="d-none">
+
+
+    </div>
+    <section>
+        <!-- Inspired by <a href="https://dribbble.com/shots/9168665-Neumorphism-Music-App">Antonio Hristovski</a>'s Dribble layout.
+        Built by <a href="https://twitter.com/TutulDevs">Tutul</a>. -->
+    </section>
+</div>
+<script src="https://kit.fontawesome.com/7d35781f0a.js" crossorigin="anonymous"></script>
+<!-- <script src="https://unpkg.com/wavesurfer.js"></script> -->
+<!-- <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script> -->
+
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+{% block js %}
+
+<script>
+
+    setTimeout(() => {
+
+        jQuery('.alert').fadeOut(100)
+
+    }, 3000)
+
+
+    for (let index = 0; index < jQuery('.add_to_cart').length; index++) {
+        const element = jQuery('.add_to_cart')[index];
+        jQuery(element).on('click', (e) => {
+            var crt_url = e.target.getAttribute('data-url')
+            jQuery('body').load(crt_url)
+        })
+    }
+
+    for (let index = 0; index < jQuery('.remove_from_cart').length; index++) {
+        const element = jQuery('.add_to_cart')[index];
+        jQuery(element).on('click', (e) => {
+            var crt_url = e.target.getAttribute('data-url')
+            jQuery('body').load(crt_url)
+        })
+    }
+
+    for (let index = 0; index < jQuery('.remove-from-wish').length; index++) {
+        const element = jQuery('.remove-from-wish')[index];
+        jQuery(element).on('click', (e) => {
+            e.preventDefault()
+            var crt_url = e.target.getAttribute('data-url')
+            jQuery('body').load(crt_url)
+        })
+    }
+
+
+
+
+    jQuery('#tab-register').on('click', (event) => {
+        // event.preventDefault();
+        jQuery.ajax({
+            type: "get",
+            url: "/accounts/signup/",
+            success: function (response) {
+                console.log(response.html)
+                jQuery('body').html(response.html)
+
+            }
+        });
+
+    })
+    jQuery('#tab-login').on('click', (event) => {
+        event.preventDefault();
+        jQuery.ajax({
+            type: "get",
+            url: "/accounts/login/",
+            success: function (response) {
+                console.log(response.html)
+                jQuery('body').html(response.html)
+
+            }
+
+
+
+        })
+    })
+
+
+    var playing = false
+    var mute = window.localStorage.getItem('mute')
+    var repeat = window.localStorage.getItem('repeat')
+    if (String(repeat) === 'null') {
+        repeat = window.localStorage.setItem('repeat', 'all')
+    }
+
+    var previouseTrack = {},
+        currentTrack = {}
+    var favedTracks = []
+    var playerDisplay = window.localStorage.getItem('playerDisplay')
+    const ele = document.getElementById('resizeMe');
+
+    // The current position of mouse
+    let x = 0;
+    let y = 0;
+
+    // The dimension of the element
+    let w = 0;
+    let h = 0;
+
+    // Handle the mousedown event
+    // that's triggered when user drags the resizer
+    const mouseDownHandler = function (e) {
+        // Get the current mouse position
+        x = e.clientX;
+        y = e.clientY;
+
+        // Calculate the dimension of element
+        const styles = window.getComputedStyle(ele);
+        w = parseInt(styles.width, 10);
+        h = parseInt(styles.height, 10);
+
+        // Attach the listeners to `document`
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+    };
+
+    const mouseMoveHandler = function (e) {
+        // How far the mouse has been moved
+        const dx = e.clientX - x;
+        const dy = e.clientY - y;
+
+        // Adjust the dimension of element
+        ele.style.width = `${w + dx}px`;
+        ele.style.maxWidth = `${w + dx}px`;
+        ele.style.height = `${h + dy}px`;
+        ele.style.minHeight = `${h + -dy}px`;
+        ele.style.maxHeight = `${h + -dy}px`;
+
+        if (ele.style.height.split('px')[0] <= 600) {
+            ele.style.height = `600px`;
+            ele.style.minHeight = `600px`;
+            ele.style.maxHeight = `600px`;
+        }
+    };
+
+    const mouseUpHandler = function () {
+        // Remove the handlers of `mousemove` and `mouseup`
+        document.removeEventListener('mousemove', mouseMoveHandler);
+        document.removeEventListener('mouseup', mouseUpHandler);
+    };
+    jQuery('.sizer').on('mousedown', (e) => {
+        mouseDownHandler(e)
+
+    })
+    for (let index = 0; index < jQuery('.playbtn').length; index++) {
+        const element = jQuery(jQuery('.playbtn')[index]);
+
+        element.on('click', (e) => {
+            handlePlay()
+        })
+    }
+
+
+    function setPlayer() {
+
+        playing = !playing
+
+        for (let index = 0; index < jQuery('.playbtn').length; index++) {
+            const element = jQuery(jQuery('.playbtn')[index]);
+            if (playing == true) {
+                jQuery('.art').css('animation', 'rolling-disk 7.5s 0.25s linear infinite')
+                element.children('#icon').html('<i class="fa fa-pause" aria-hidden="true"></i>')
+                for (let index = 0; index < jQuery(`.li-playbtn`).length; index++) {
+                    const element = jQuery(`.li-playbtn`)[index];
+                    if (jQuery(element).data('pk') == currentTrack.pk) {
+
+                        jQuery(element).removeClass('sm2_paused')
+                        jQuery(element).addClass('sm2_playing')
+
+                    }
+
+                    else {
+
+                        jQuery(element).removeClass('sm2_playing')
+                        jQuery(element).addClass('sm2_paused')
+                    }
+
+                }
+
+            }
+            if (playing == false) {
+
+                jQuery('.art').css('animation', 'none')
+
+                element.children('#icon').html('<i class="fa fa-play" aria-hidden="true"></i>')
+                for (let index = 0; index < jQuery(`.li-playbtn`).length; index++) {
+                    const element = jQuery(`.li-playbtn`)[index];
+                    if (jQuery(element).hasClass('sm2_playing')) {
+
+                        jQuery(element).removeClass('sm2_playing')
+                        jQuery(element).addClass('sm2_paused')
+                    }
+                }
+            }
+        }
+    }
+
+    for (let index = 0; index < jQuery('.repeat').length; index++) {
+        const element = jQuery(jQuery('.repeat')[index]);
+
+        switch (repeat) {
+            case 'all':
+
+                element.removeClass('activebtn');
+
+                element.children('#icon').html('<i class="fa fa-repeat    "></i> ');
+                repeat = 'all';
+                window.localStorage.setItem('repeat', repeat);
+                element.attr('title', "repeat all")
+                break;
+            case 'one':
+
+                element.removeClass('activebtn');
+
+                element.children('#icon').html('<i class="fa fa-repeat    ">1</i> ');
+                repeat = 'one';
+                window.localStorage.setItem('repeat', repeat);
+                element.attr('title', "repeat current track")
+
+                break;
+            default:
+                repeat = 'off'
+                element.addClass('activebtn');
+
+                window.localStorage.setItem('repeat', repeat)
+                element.children('#icon').html('<i class="fa fa-repeat    "></i>')
+                element.attr('title', "repeat none")
+
+                break;
+
+
+        }
+        element.on('click', (e) => {
+
+
+            switch (repeat) {
+                case 'off':
+                    element.removeClass('activebtn');
+
+                    element.children('#icon').html('<i class="fa fa-repeat    "></i> ');
+                    repeat = 'all';
+                    window.localStorage.setItem('repeat', repeat);
+                    element.attr('title', "repeat all")
+
+                    break;
+                case 'all':
+                    element.removeClass('activebtn');
+
+                    element.children('#icon').html('<i class="fa fa-repeat    ">1</i> ');
+                    repeat = 'one';
+                    window.localStorage.setItem('repeat', repeat);
+                    element.attr('title', "repeat current track")
+
+                    break;
+                case 'one':
+                    element.addClass('activebtn');
+
+                    element.children('#icon').html('<i class="fa fa-repeat    "></i> ');
+
+                    repeat = 'off';
+                    window.localStorage.setItem('repeat', repeat);
+                    element.attr('title', "repeat none")
+
+                    break;
+                default:
+                    repeat = 'off'
+
+                    window.localStorage.setItem('repeat', repeat)
+                    element.children('#icon').html('<i class="fa fa-repeat    "></i>')
+                    element.attr('title', "repeat none")
+
+                    break;
+
+
+            }
+
+        })
+    }
+
+    for (let index = 0; index < jQuery('.mutebtn').length; index++) {
+        const element = jQuery(jQuery('.mutebtn')[index]);
+        if (String(mute) == 'true') {
+            element.toggleClass('activebtn')
+
+        }
+        element.on('click', (e) => {
+            if (String(mute) == 'true') {
+                window.localStorage.setItem('mute', false)
+                element.toggleClass('activebtn')
+                mute = false
+            }
+            else {
+                window.localStorage.setItem('mute', true)
+                element.toggleClass('activebtn')
+                mute = true
+
+            }
+            wavesurfer.setMute(mute)
+        })
+    }
+
+    jQuery('.closeBtn').on('click', (e) => {
+
+        jQuery('.player-cont').fadeOut(10)
+        window.localStorage.setItem('playerDisplay', false)
+
+
+    })
+
+    jQuery('.favBtn').on('click', (e) => {
+        fetch(jQuery('.favBtn').attr('data-track-fav-url')).then(resp => {
+            if (resp.status === 200 || resp.status === 201) {
+                jQuery('.favBtn').toggleClass('faved')
+                if (jQuery('.favBtn').hasClass('faved')) {
+
+                    if (favedTracks.filter(item => item.pk == currentTrack.pk).length >= 1) {
+                        setTimeout(() => {
+
+                            trck = favedTracks.filter(item => item.pk == currentTrack.pk)[0]
+
+                            // favedTracks.pop(trck)
+                            trck['is_faved'] = 'True'
+                            trck['unfaved'] = false
+                            // favedTracks.push(trck)
+                        }
+                            , 100)
+
+                    }
+                    else {
+                        trck = currentTrack
+                        trck['is_faved'] = 'True'
+                        trck['unfaved'] = false
+                        favedTracks.push(trck)
+                    }
+
+
+                }
+
+
+
+
+                else {
+
+                    if (favedTracks.filter(item => item.pk == currentTrack.pk).length >= 1) {
+                        setTimeout(() => {
+                            trck = favedTracks.filter(item => item.pk == currentTrack.pk)[0]
+                            // favedTracks.pop(trck)
+                            // console.log(trck)
+
+                            trck['is_faved'] = 'False'
+                            trck['unfaved'] = true
+                            // favedTracks.push(trck)
+                            // console.log(favedTracks, trck, 'after unfaved')
+                        }
+                            , 100)
+
+
+                    }
+                    else {
+
+                        trck = currentTrack
+                        trck['is_faved'] = 'True'
+                        trck['unfaved'] = false
+
+                        favedTracks.push(trck)
+
+                    }
+
+                }
+            }
+        })
+    })
+    // var wavesurfer = WaveSurfer.create({
+    //     container: '#waveform',
+    //     // waveColor: 'violet',
+    //     // progressColor: 'purple',
+
+    //     // plugins: [
+    //     //     WaveSurfer.regions.create({})
+    //     // ]
+    // });
+    // alert('ii')
+    // wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
+    // wavesurfer.on('ready', function () {
+    //     wavesurfer.play();
+    //     alert('playing')
+    // });
+
+    var wavesurfer = WaveSurfer.create({
+        container: '.prog-bar-inner',
+        waveColor: 'violet',
+        progressColor: 'purple'
+    });
+
+    jQuery('.next-track').on('click', () => {
+        pausePlayer()
+        setPlayer()
+        playing = false
+
+        for (let index = 0; index < jQuery(`.li-playbtn`).length; index++) {
+            const element = jQuery(`.li-playbtn`)[index];
+            if (jQuery(element).hasClass('sm2_playing')) {
+
+                jQuery(element).removeClass('sm2_paused')
+                next = index + 1
+                if (parseInt(next) >= jQuery(`.li-playbtn`).length) {
+                    return jQuery(`.li-playbtn`)[0].click()
+
+                }
+                jQuery(`.li-playbtn`)[next].click()
+                break;
+
+            }
+
+
+
+        }
+
+    })
+
+
+    jQuery('.prev-track').on('click', () => {
+        pausePlayer()
+        setPlayer()
+        playing = false
+
+        for (let index = 0; index < jQuery(`.li-playbtn`).length; index++) {
+            const element = jQuery(`.li-playbtn`)[index];
+            let prev = index - 1
+            if (jQuery(element).hasClass('sm2_playing')) {
+                if ((wavesurfer.getCurrentTime() / 60).toFixed(2) <= 0.1) {
+                    if (prev <= -1) {
+                        wavesurfer.play(0, wavesurfer.getDuration())
+                    }
+                    jQuery(element).removeClass('sm2_paused')
+                    prev = jQuery(`.li-playbtn`)[prev].click()
+                }
+                else {
+                    wavesurfer.play(0, wavesurfer.getDuration())
+                    playing = true
+                }
+                break;
+
+            }
+
+
+
+        }
+
+    })
+
+
+    const handlePlay = (track = null, is_faved = false, stream_url = null, fav_url = '') => {
+        // console.log(track)
+        // alert(is_faved)
+        window.localStorage.setItem('playerDisplay', true)
+
+        setPlayer()
+        if (track !== null) {
+
+            track = JSON.parse(track)
+            var audio = track.audio
+            var title = track.title
+            var artist = track.artist
+            var track_pk = track.pk
+            var cover = track.cover
+            currentTrack = track
+            // alert(is_faved)
+
+            if (previouseTrack.pk != currentTrack.pk) {
+                if (!(previouseTrack.pk === undefined)) {
+                    fetch(stream_url).then(resp => { })
+
+
+                }
+
+            }
+
+            if (favedTracks.filter(item => item.pk == track_pk && item.is_faved == 'False').length >= 1 || is_faved == 'False') {
+
+                jQuery('.favBtn').removeClass('faved');
+                if (favedTracks.filter(item => item.pk == track_pk && item.is_faved == 'True' && item.unfaved == false).length >= 1) {
+
+                    jQuery('.favBtn').addClass('faved');
+
+                }
+                else if (favedTracks.filter(item => item.pk == track_pk && item.is_faved == 'False' && item.unfaved == true).length >= 1) {
+                    jQuery('.favBtn').removeClass('faved');
+
+                }
+            }
+            else {
+                jQuery('.favBtn').addClass('faved');
+
+
+
+
+            }
+
+            // alert(favedTracks.includes(track_pk))
+            jQuery('.s-track-title').html(title)
+            jQuery('.s-track-artist').html(artist)
+            jQuery('.favBtn').attr('data-track-fav-url', fav_url)
+            jQuery('.art').attr('src', cover)
+
+            wavesurfer.load(audio);
+
+        }
+        if (playing === true) {
+            wavesurfer.play();
+
+
+
+
+        }
+
+
+
+
+
+        else {
+            if (track === null) {
+                pausePlayer()
+
+
+            }
+            else {
+
+                setPlayer()
+            }
+
+        }
+        wavesurfer.on('ready', function () {
+            if (String(mute) == 'true') {
+                wavesurfer.setMute(true)
+
+            }
+            else {
+                wavesurfer.setMute(false)
+
+            }
+            if (playing == true) {
+                wavesurfer.play();
+
+            }
+        }
+
+        );
+        if (track !== null) {
+
+            for (let index = 0; index < jQuery(`.li-playbtn`).length; index++) {
+                const element = jQuery(`.li-playbtn`)[index];
+                // alert(element.getAttribute('data-pk'))
+                if (element.getAttribute('data-pk') == track_pk && playing === true) {
+                    // alert('yes')
+
+                    jQuery(element).removeClass('sm2_paused')
+                    jQuery(element).addClass('sm2_playing')
+                }
+                else {
+                    // alert('no ')
+
+                    jQuery(element).addClass('sm2_paused')
+
+                    jQuery(element).removeClass('sm2_playing')
+
+                }
+
+
+                previouseTrack = track
+            }
+        }
+
+        setInterval(() => {
+            if (wavesurfer.isPlaying() === false && (currentTrack.pk !== undefined || previouseTrack.pk !== undefined)) {
+
+                totalTime = wavesurfer.getDuration(),
+                    currentTime = wavesurfer.getCurrentTime()
+
+                if (currentTime !== 0 && totalTime !== 0 && currentTime >= totalTime) {
+
+                    if (playing === true) {
+
+                        if (repeat === 'one') {
+                            setPlayer()
+                            return handlePlay()
+                        }
+                        if (repeat === 'all') {
+                            // setPlayer()
+                            return jQuery('.next-track').click();
+
+                        }
+                        else {
+                            return setPlayer()
+                        }
+                    }
+
+
+                }
+
+            }
+            if (String(window.localStorage.getItem('playerDisplay')) == 'true') {
+
+                jQuery('.player-cont').fadeIn()
+
+            }
+            else {
+                jQuery('.player-cont').fadeOut()
+            }
+
+        }, 100)
+    };
+
+
+    var totalTime = wavesurfer.getDuration(),
+        currentTime = wavesurfer.getCurrentTime(),
+        remainingTime = totalTime - currentTime;
+    wavesurfer.on('audioprocess', function () {
+
+        if (wavesurfer.isPlaying()) {
+            // jQuery('.art').css('animation', 'rolling-disk 7.5s 0.25s linear infinite')
+
+            totalTime = wavesurfer.getDuration(),
+                currentTime = wavesurfer.getCurrentTime(),
+                remainingTime = totalTime - currentTime;
+            document.getElementById('time-total').innerText = (totalTime / 60).toFixed(2);
+            document.getElementById('time-current').innerText = (currentTime / 60).toFixed(2);
+            document.getElementById('time-remaining').innerText = (remainingTime / 60).toFixed(2);
+
+            (currentTime / 60).toFixed(2) == (totalTime / 60).toFixed(2) ? wavesurfer.pause() : null
+        }
+
+
+    });
+
+    function pausePlayer() {
+        wavesurfer.pause()
+        playing = false
+    }
+
+
+
+    // set default tracks 
+
+    jQuery(document).ready(function () {
+        if (!currentTrack.pk) {
+            playing = true
+            var trckEl = jQuery('.li-playbtn')
+            if (trckEl.length <= 0) {
+                jQuery('.player-cont').fadeOut()
+
+            }
+            else {
+                trckEl[0].click()
+            }
+
+            setPlayer()
+            wavesurfer.pause()
+
+        }
+    });
+
+
+</script>
+
+<style>
+    wave {
+        height: 40px !important;
+    }
+</style>
+
+{% endblock js %}
+{% endwith %}

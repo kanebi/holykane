@@ -1,0 +1,386 @@
+body {
+  color: #FFF;
+}
+
+a {
+  color: #ED145B;
+}
+
+a:hover,
+a:focus {
+  color: #f1437c;
+}
+
+blockquote cite {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+input,
+textarea {
+  border: 1px solid #363636;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  border-color: #ED145B;
+}
+
+.btn,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button,
+.button,
+.comment-reply-link {
+  background-color: #ED145B;
+}
+
+.btn:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover,
+.button:hover,
+.comment-reply-link:hover {
+  background: #c90f4c;
+}
+
+#page {
+  border-color: #ED145B;
+}
+
+#navigation > li ul a:hover,
+#navigation > li ul .sfHover > a {
+  color: #FFF;
+  background: #ED145B;
+}
+
+#navigation > li > a:hover,
+#navigation > li.sfHover > a,
+#navigation > li.sfHover > a:active,
+#navigation > li.current_page_item > a,
+#navigation > li.current-menu-item > a,
+#navigation > li.current-menu-ancestor > a,
+#navigation > li.current-menu-parent > a,
+#navigation > li.current > a {
+  border-bottom: 2px solid #ED145B;
+}
+
+#navigation > li ul a {
+  color: #FFF;
+  background: #000;
+  border-bottom: 1px solid #292322;
+}
+
+#navigation ul {
+  border: 3px solid #292322;
+}
+
+.section-title:after,
+.widget-title:after {
+  border-bottom: 1px solid #ED145B;
+}
+
+.item-thumb {
+  background-color: #242424;
+}
+
+.item-thumb:before {
+  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.item-thumb:hover:before {
+  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.item-meta {
+  border-top: 1px solid #363636;
+}
+
+.item-meta th,
+.item-meta td {
+  border-bottom: 1px solid #363636;
+  border-left: 1px solid #363636;
+}
+
+.item-meta td {
+  border-right: 1px solid #363636;
+}
+
+.item-timer .count {
+  border: 1px solid #363636;
+}
+
+.item-timer .count b {
+  color: #ED145B;
+}
+
+.entry-title a {
+  color: #FFF;
+}
+
+.entry-title a:hover {
+  color: #ED145B;
+}
+
+.entry-meta {
+  color: #3F3F3F;
+}
+
+#paging > span,
+#paging a,
+.page-numbers li > span,
+.page-numbers li a {
+  background-color: #1D1D1D;
+}
+
+#paging > span.current,
+#paging a.current,
+.page-numbers li > span.current,
+.page-numbers li a.current {
+  background-color: #ED145B;
+  color: #FFF;
+}
+
+#paging span.current,
+#paging a:hover,
+.page-numbers li span.current,
+.page-numbers li a:hover {
+  color: #FFF;
+  background-color: #ED145B;
+}
+
+.filters-nav .btn {
+  background-color: #1d1d1d;
+}
+
+.filters-nav .btn:hover {
+  background-color: #ED145B;
+}
+
+.filters-nav a.selected {
+  background-color: #ED145B;
+}
+
+.tracklisting .track {
+  border: 1px solid #363636;
+}
+
+.tracklisting .track:last-child {
+  border: 1px solid #363636;
+}
+
+.tracklisting .track:hover,
+.tracklisting .track.playing {
+  border-color: #ED145B;
+}
+
+.tracklisting .track:hover .sm2_link,
+.tracklisting .track.playing .sm2_link {
+  background-color: #ED145B;
+}
+
+.tracklisting .track:hover .track-no,
+.tracklisting .track.playing .track-no {
+  color: #ED145B;
+}
+
+.sm2_link {
+  background-color: #2a2a2a;
+}
+
+.sm2_link:hover,
+.sm2_link:focus {
+  color: #FFF;
+  background-color: #ED145B;
+}
+
+.sm2_link.sm2_playing {
+  background-color: #ED145B;
+}
+
+.track-no {
+  color: #5c5c5c;
+}
+
+.ci-soundplayer-play {
+  background-color: #ED145B;
+}
+
+.ci-soundplayer-prev,
+.ci-soundplayer-next {
+  background-color: #242424;
+  color: #FFF;
+}
+
+.ci-soundplayer-meta .track-bar {
+  background-color: #242424;
+}
+
+.ci-soundplayer-meta .progress-bar {
+  background-color: #ED145B;
+}
+
+.ci-soundplayer-meta .load-bar {
+  background-color: #3e3e3e;
+}
+
+.form-allowed-tags,
+.comment-notes {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.widget ul li {
+  border-bottom: 1px solid #363636;
+}
+
+.widget ul ul.children li:first-child {
+  border-top: 1px solid #363636;
+}
+
+.shop-actions {
+  border-bottom: 1px solid #363636;
+}
+
+.sale-wrap {
+  background: #ED145B;
+}
+
+.onsale {
+  background: #ED145B;
+}
+
+.quantity input {
+  background-color: #ED145B;
+}
+
+.woocommerce-tabs .tabs {
+  border-bottom: 1px solid #363636;
+}
+
+.woocommerce-tabs .tabs li a {
+  border-top: 1px solid #363636;
+  border-right: 1px solid #363636;
+  color: #FFF;
+}
+
+.woocommerce-tabs .tabs li.active a {
+  color: #FFF;
+  background-color: #ED145B;
+}
+
+.entry-content table {
+  border: 1px solid #363636;
+}
+
+.entry-content table caption,
+.entry-content table th,
+.entry-content table td {
+  border-bottom: 1px solid #363636;
+}
+
+.entry-content table th {
+  background-color: #ED145B;
+}
+
+.entry-content table tr:nth-child(2n) {
+  background-color: #2e2e2e;
+}
+
+.shop_attributes th,
+.shop_attributes td {
+  border-bottom: 1px solid #363636;
+}
+
+.shop_attributes tr:first-child th,
+.shop_attributes tr:first-child td {
+  border-top: 1px solid #363636;
+}
+
+.shop_table th,
+.shop_table td {
+  border-bottom: 1px solid #363636;
+}
+
+.cart_totals th,
+.cart_totals td {
+  border-bottom: 1px solid #363636;
+}
+
+.woocommerce-checkout .woocommerce-info {
+  border-top: 1px solid #363636;
+  border-bottom: 1px solid #363636;
+}
+
+.payment_box {
+  border: 1px solid #363636;
+}
+
+.order_details {
+  background: #363636;
+}
+
+.order_details li {
+  border-bottom: 1px solid #363636;
+}
+
+.woocommerce-message,
+.woocommerce-info {
+  background: #363636;
+}
+
+.widget ul.product_list_widget li {
+  border-bottom: 1px solid #363636;
+}
+
+.price_slider {
+  background: #505050;
+}
+
+.price_slider .ui-slider-range {
+  background: #2c2c2c;
+  border-top: 1px solid #363636;
+  border-bottom: 1px solid #363636;
+}
+
+.price_slider .ui-slider-handle {
+  background: #ED145B;
+}
+
+.footer-separator {
+  background-color: #ED145B;
+}
+
+.woocommerce-MyAccount-navigation-link a {
+  border-bottom: 1px solid #363636;
+}
+
+.woocommerce-MyAccount-navigation-link a::after {
+  color: #FFF;
+}
+
+.woocommerce-MyAccount-navigation-link.is-active a {
+  color: #FFF;
+}
+
+.select2-container--default .select2-selection--single {
+  background-color: transparent;
+  border-color: #363636;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #FFF;
+}
+
+.select2-dropdown {
+  background-color: #242424;
+  border-color: #363636;
+}
+
+@media (max-width: 767px) {
+  .item-fullwidth .item-info {
+    background-color: #363636;
+  }
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Email Verified
+{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="accountVerified">
+        <div class="col-md-12 accountHeader">
+            <h1><i class="fas fa-check"></i> Your email has successfully been verified</h1>
+        </div>
+
+        <div class="accountMainSectionInner">
+            <div class="col-md-12 accountMainAction">
+                <div class="accountMainActionVerified">
+                    <a href="/my-account" class="accountMainActionSubmit">My Account</a>
+                    <a href="/" class="accountMainActionSubmit">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

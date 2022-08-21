@@ -1,0 +1,10 @@
+# created by virtualenv automatically
+
+/scripts
+/lib
+*/__pycache__
+*/migrations
+db.sqlite3
+/static_files   
+.env
+/mediafiles

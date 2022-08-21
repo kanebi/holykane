@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Complete Order - Holykane Solo Artist - Payment {{order.ref_code}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="text-center" style="text-align: center;">
+        <form>
+            <div> Proceed to Payment
+
+                {{order.get_total}}
+            </div>
+            <button type="button" id="start-payment-button" class="btn-primary primary w-100" onclick="makePayment()">Pay Now</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+<br><br><br><br>
+<script>
+    function makePayment() {
+
+        FlutterwaveCheckout({
+            public_key: '{{flutter_key}}',
+            tx_ref: '{{order.ref_code}}' + Math.floor(Math.random() * 99999 / 10),
+            amount: '{{order.get_total.amount}}',
+            currency: "{{order.get_total.currency}}",
+            payment_options: "card, banktransfer, ussd",
+            redirect_url: window.origin + `/shop/order/{{order.ref_code}}`,
+            meta: {
+                consumer_id: 23,
+                consumer_mac: "92a3-912ba-1192a",
+            },
+            customer: {
+                email: "{{order.billing_address.email}}",
+                phone_number: "{{order.billing_address.phone}}",
+                name: "{{order.billing_address.full_name}}",
+            },
+            customizations: {
+                title: "The Holykane Solo Store",
+                description: "Payment for {{order.ref_code}}",
+                logo: window.origin + "{% static 'wp-content/uploads/sites/2/2014/09/logo_solo.png' %}",
+            },
+        });
+    }
+</script>
+{% endblock content %}
+
+
+{% block js %}
+
+{% endblock js %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load pages_tag %}
+
+{% block title %}
+About Holykane Solo Artist | <i class="fa fa-copyright" aria-hidden="true"></i> 2022
+
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+            {% with request|get_about_page as about %}
+
+            <div class="col-md-8 col-sm-7 ">
+
+                <h1 class="section-title">{{about.title | safe}}</h1>
+                <article id="entry-53" class="entry post-53 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        {{about.description | safe }}
+                    </div>
+                </article>
+            </div>
+            {% endwith %}
+
+            <div class="col-md-4 col-sm-5 ">
+                {% include "snippets/album-sidebar.html" %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

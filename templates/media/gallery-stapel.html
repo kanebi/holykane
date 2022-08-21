@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+Gallery Stapel || Holykane
+{% endblock title %}
+
+{% block content %}
+
+<main id="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="stapel-head">
+					<h3 class="section-title">Galleries &#8211; Stapel</h3><a class="tp-close" href="#"><i class="fa fa-arrow-circle-left"></i></a>
+				</div>
+				<ul id="tp-grid" class="tp-grid">
+
+					{% for photo in galleries %}
+
+					{% for image in photo.images.all %}
+
+					<li data-pile="{{photo.title}}"> <a class="zoom" data-rel="prettyPhoto[56]" href="{{image.image.url}}">
+							<figure class="item-thumb"> <img src="{{photo.mainCover.url}}" alt=""></figure>
+							<div class="item-info">
+								<p class="item-byline"></p>
+							</div>
+						</a></li>
+
+					{% endfor %}
+					{% empty %}
+					<center>
+						Nothing to show
+
+					</center>
+					{% endfor %}
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock content %}

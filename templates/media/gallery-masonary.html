@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+Gallery - Masonry || Holykane
+{% endblock title %}
+
+{% block content %}
+
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="section-title">Galleries &#8211; Masonry</h3>
+                <ul class="filters-nav group">
+
+
+
+                    <li><a href="#filter" class="selected btn small transparent" data-filter="*">All Items</a></li>
+                    {% for key, category in gallery_categories %}
+                    <li><a href="#filter" class="btn small transparent" data-filter=".{{category}}">{{category}}</a></li>
+                    {% endfor %}
+
+                </ul>
+                <div class="row item-list list-masonry">
+
+                    {% for photo in galleries %}
+
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-4 tour {{photo.get_category_display}} term-17">
+                        <div class="item post-152 cpt_gallery type-cpt_gallery status-publish has-post-thumbnail hentry gallery-category-tour"> <a href="{{photo.get_absolute_url}}" class="item-hold">
+                                <figure class="item-thumb"> <img width="750" height="500" src="{{photo.get_cover_url}}" class="attachment-ci_masonry size-ci_masonry wp-post-image" alt="" loading="lazy" srcset="{{photo.get_cover_url}} 750w, {{photo.get_cover_url}} 300w, {{photo.get_cover_url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-main">{{photo.title}}</p>
+                                <p class="item-byline">{{photo.location}}</p>
+                            </div><a class="btn item-btn" href="{{photo.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <center>
+                        Nothing to show
+
+                    </center>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

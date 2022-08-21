@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+All Events || Holykane Solo Artist
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="event-list">
+                    <h3 class="section-title">Upcoming Events</h3>
+                    <div class="row item-list ">
+                        {% for event in upcoming_events %}
+
+
+                        <div class="col-xs-12 col-sm-6 col-md-4 ">
+                            <div class="item post-49 cpt_event type-cpt_event status-publish has-post-thumbnail hentry event-category-shows"> <a href="{{event.get_absolute_url}}" class="item-hold">
+                                    <figure class="item-thumb"> <img width="750" height="500" src="{{event.cover.url}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" /></figure>
+                                </a>
+                                <div class="item-info">
+                                    <p class="item-title-intro">{{event.date_time | date}}</p>
+                                    <p class="item-title-main">{{event.venue}}</p>
+                                    <p class="item-byline">{{event.location}}</p>
+                                </div><a class="btn item-btn" href="{{event.get_absolute_url}}">Read More »</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="event-list">
+                    <h3 class="section-title">Past Events</h3>
+                    <div class="row item-list ">
+                        {% for event in upcoming_events %}
+
+
+                        <div class="col-xs-12 col-sm-6 col-md-4 ">
+                            <div class="item post-49 cpt_event type-cpt_event status-publish has-post-thumbnail hentry event-category-shows"> <a href="{{event.get_absolute_url}}" class="item-hold">
+                                    <figure class="item-thumb"> <img width="750" height="500" src="{{event.cover.url}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" /></figure>
+                                </a>
+                                <div class="item-info">
+                                    <p class="item-title-intro">{{event.date_time | date}}</p>
+                                    <p class="item-title-main">{{event.venue}}</p>
+                                    <p class="item-byline">{{event.location}}</p>
+                                </div><a class="btn item-btn" href="{{event.get_absolute_url}}">Read More »</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

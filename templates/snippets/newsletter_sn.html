@@ -1,0 +1,25 @@
+<div class="inner-widget-area">
+    <section id="ci-newsletter-3" class="widget group widget_ci-newsletter">
+        <div class="widget-wrap ">
+            <div class="container">
+                <form action="{% url 'newsletter_signin' %}" method="post" class="ci-newsletter-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12">
+                            <label for="e_id">Subscribe to our newsletter</label>
+                            <span>Stay up to date!</span>
+                        </div>
+
+                        <div class="col-md-7 col-sm-12">
+                            <div class="input-group">
+                                <input type="email" name="email" id="e_id" placeholder="Your e-mail">
+                                <button type="submit" class="btn">Subscribe now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="hidden1" value="value1"><input type="hidden" name="hidden2" value="value2">
+                </form>
+            </div><!-- /container -->
+        </div><!-- /widget-wrap -->
+    </section>
+</div>

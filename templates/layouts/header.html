@@ -1,0 +1,74 @@
+{% load static %}
+{% load shop_tags %}
+{% load pages_tag %}
+{% with request|get_header as header %}
+
+<header id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-3">
+                <h1 class="site-logo imglogo"><a href="/"><img src="{{header.logo.url}}" alt="Chords - Solo Artist" data-rjs="{{header.logo.url}}" /></a></h1>
+            </div>
+            <div class="col-md-8 col-sm-9">
+                <nav class="nav-secondary-wrap">
+                    <ul class="nav-secondary">
+
+                        {% if not user.is_authenticated %}
+
+
+                        <li id="menu-item-84" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-84"><a href="{% url 'account_login' %}">Login <i class="fa fa-sign-in" aria-hidden="true"></i> </a></li>
+                        {% else %}
+                        <li id="menu-item-84" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-84"><a href="/my-account">My Account</a></li>
+                        {% endif %}
+                        {% with request|get_user_cart as cart %}
+
+                        {% if cart.count >= 1 %}
+                        <li id="menu-item-85" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-85"><a href="{% url 'shop:checkout' %}">Checkout</a></li>
+
+
+                        <li>
+                            <div class="cart-head"> Shopping Bag: <a href="{% url 'shop:cart' %}"> <b>{{cart.count}} items</b> <span class="cart-price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span>{{ cart.total_sum }}</bdi></span></span> </a></div>
+                        </li>
+                        {% else %}
+                        <li>
+                            <div class="cart-head"> Shopping Bag: <a href="{% url 'shop:cart' %}"> <b>{{cart.count}} items</b> <span class="cart-price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>{{ cart.total_sum }}</bdi></span></span> </a></div>
+                        </li>
+                        {% endif %}
+
+                        {% endwith %}
+
+                    </ul>
+                </nav>
+                <nav id="nav">
+                    <ul id="navigation" class="group">
+                        <li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-6 current_page_item menu-item-26"><a href="/" aria-current="page">Home</a></li>
+                        <li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-25"><a href="{% url 'discography:all' %}">Discography</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149"><a href="{% url 'discography:masonry' %}">Discography – Masonry</a></li>
+                                <li id="menu-item-147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-147"><a href="{% url 'discography:all' %}">Discography – All</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-24"><a href="/events">Events</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-116"><a href="{% url 'events:events-masonry' %}">Events Masonry</a></li>
+                                <li id="menu-item-118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-118"><a href="{% url 'events:events-all' %}"> Events - All</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-27" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-27"><a href="{% url 'media:gallery-masonry' %}">Media</a>
+                            <ul class="sub-menu">
+                                <li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="{% url 'media:gallery-stapel' %}">Galleries – Stapel</a></li>
+                                <li id="menu-item-126" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-126"><a href="{% url 'media:gallery-masonry' %}">Galleries – Masonry</a></li>
+
+                                <li id="menu-item-136" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-136"><a href="{% url 'media:video-masonry' %}">Videos Masonry</a></li>
+                            </ul>
+                        </li>
+                        <li id="menu-item-87" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-87"><a href="/shop">Shop</a></li>
+                        <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33"><a href="/blog">Blog</a></li>
+                        <li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32"><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div id="mobilemenu"></div>
+            </div>
+        </div>
+    </div>
+</header>{% endwith %}

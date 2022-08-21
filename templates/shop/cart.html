@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load shop_tags %}
+{% block title %}
+Cart - Holykane - Solo Artist
+{% endblock title %}
+
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12">
+
+                <h1 class="section-title">
+                    Cart</h1>
+                <article id="entry-79" class="entry post-79 page type-page status-publish hentry">
+                    {% with request|get_user_cart as cart %}
+
+                    {% if cart.count >= 1 %}
+
+
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Total</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for cart_item in cart.all %}
+
+                                        <tr>
+                                            <td class="col-md-12 ">
+                                                <div class="media">
+                                                    <a class="thumbnail pull-left" href="{{cart_item.item.get_shop_url}}"> <img class="media-object" src="{{cart_item.item.cover.url}}" style="width: 72px; height: 72px;"> </a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading"><a href="{{cart_item.item.get_shop_url}}">{{cart_item.item.title}}</a></h4>
+
+                                                        {% if cart_item.item.type == 'T' %}
+                                                        <h5 class="media-heading"> by <a href="{{cart_item.item.get_absolute_url}}">{{cart_item.item.producers}}</a></h5>
+
+
+                                                        <span>Status: </span><span class="text-warning"><small>delivered to your mail in minutes.</small></span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="" style=" text-align: center">
+                                                <input type="number" name="quantity" data-url="{{cart_item.item.get_add_to_cart_url}}" class="addCartBtn form-control" id="exampleInputEmail1" value="{{cart_item.quantity}}">
+                                            </td>
+
+
+
+                                            <td class=" text-center"> <small>{{cart_item.item.get_price}}</small></td>
+                                            <!-- <td class=" "> </td> -->
+
+                                            <td class="col-md-push-8"><strong>{{cart_item.get_final_sum_price}}</strong></td>
+
+                                            <td class="">
+                                                <button type="button" data-url="{{cart_item.item.get_remove_from_cart_url}}" class="btn btn-danger removefrmCartbtn">
+                                                    <span class="glyphicon glyphicon-remove"></span> Remove
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        No item in your cart
+                                        {% endfor %} <tr>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>
+                                                <h5>Subtotal</h5>
+                                            </td>
+                                            <td class="text-right">
+                                                <h5><strong>{{cart.total_sum}}</strong></h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>
+                                                <h5>Estimated shipping</h5>
+                                            </td>
+                                            <td class="text-right">
+                                                <h5><strong>{{cart.shipping_fee}}</strong></h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>
+                                                <h3>Total</h3>
+                                            </td>
+                                            <td class="text-right">
+                                                <h3><strong>{{cart.final_total_sum}}</strong></h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>
+                                                <button type="button" class="btn btn-default" onclick="window.location.href ='/'">
+                                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success" onclick="window.location.href='/shop/checkout'">
+                                                    Checkout <span class="glyphicon glyphicon-play"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% else %}
+                    <div class="entry-content">
+                        <div class="woocommerce">
+                            <div class="woocommerce-notices-wrapper"></div>
+                            <p class="cart-empty woocommerce-info">Your cart is currently empty.</p>
+                            <p class="return-to-shop">
+                                <a class="button wc-backward" href="/shop">
+                                    Return to shop </a>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% endwith %}
+
+                </article>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</main>
+
+<script>
+    for (let index = 0; index < jQuery('.addCartBtn').length; index++) {
+        const element = jQuery('.addCartBtn')[index];
+        jQuery(element).on('change', (e) => {
+            jQuery('body').load(e.target.getAttribute('data-url') + '?&quantity=' + e.target.value
+            )
+        })
+    }
+
+    for (let index = 0; index < jQuery('.removefrmCartbtn').length; index++) {
+        const element = jQuery('.removefrmCartbtn')[index];
+        jQuery(element).on('click', (e) => {
+            e.preventDefault()
+            jQuery('body').load(e.target.getAttribute('data-url')
+            )
+        })
+
+    }
+
+</script>
+
+{% endblock content %}

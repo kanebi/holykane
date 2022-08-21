@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load pages_tag %}
+{% load static %}
+{% block content %}
+{% with request|get_homepage as homepage %}
+
+<div id="home-slider" class="flexslider loading">
+    <ul class="slides">
+        {% for slide in homepage.slides.all %}
+
+        <li style="background-image: url('{{slide.image.url}}');">
+            <div class="slide-content">
+                <h3 class="slide-title">{{slide.title}}</h3>
+                <p class="slide-subtitle">{{slide.subtitle}}</p> <a class="btn btn-lg" href="{{slide.location_url}}">{{slide.action_text}} »</a>
+
+
+            </div>
+            <div>
+                {% if slide.description %}
+
+
+                {{slide.description | safe}}
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>
+<div class="hero-player">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="ci-soundplayer  ci-current-track">
+                    <div class="ci-soundplayer-controls"> <a class="ci-soundplayer-prev" href="#"><i class="fa fa-step-backward"></i></a> <a class="ci-soundplayer-play" href="#"><i class="fa fa-play"></i></a> <a class="ci-soundplayer-next" href="#"><i class="fa fa-step-forward"></i></a></div>
+                    <div class="ci-soundplayer-meta"> <span class="track-title"></span>
+                        <div class="track-bar">
+                            <div class="progress-bar"></div>
+                            <div class="load-bar"></div>
+                        </div> <span class="track-position">00:00</span>
+                    </div>
+                    <ol class="ci-soundplayer-tracklist">
+                        {% for song in homepage.recommended_tracks.all %}
+
+                        <li><a class="inline-exclude" href="{{song.audio.url}}">{{song.title}} - {{song.version}}</a></li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<main id="main" class="home-sections">
+    <section id="ci-events-2" class="widget group widget_ci-events">
+        <div class="widget-wrap ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="section-title">Upcoming Events</h2>
+                    </div>
+                </div>
+                {% for event in upcoming_events %}
+
+                <div class="row item-list list-masonry">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="item cpt_event "> <a class="item-hold" href="{{event.get_absolute_url}}">
+                                <figure class="item-thumb"> <img width="750" height="500" src="{{event.cover.url}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-intro">{{event.date_time | date}}</p>
+                                <p class="item-title-main">{{event.venue}}</p>
+                                <p class="item-byline">{{event.location}}}</p>
+                            </div> <a class="btn item-btn" href="{{event.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+
+                <h5>No upcoming events now</h5>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+    <section id="ci-split-content-2" class="widget group widget_ci-split-content">
+        <div class="widget-wrap parallax" data-speed="0.8" data-image-src="{{homepage.about_artist_bg.url}}" style="background-image: url('{{homepage.about_artist_bg.url}}');" data-parallax="scroll" data-bleed="3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-md-push-7"></div>
+                    <div class="col-md-7 col-md-pull-5">
+                        <h3>About HolyKane </h3>
+                        {{homepage.about_artist|safe}}<a class="btn btn-lg" href="{% url 'about' %}">Read More »</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ci-items-2" class="widget group widget_ci-items">
+        <div class="widget-wrap ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="section-title">Photo Galleries</h2>
+                    </div>
+                </div>
+                <div class="row">
+
+                    {% for gallery in photo_galleries %}
+
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="item cpt_gallery "> <a class="item-hold" href="{{gallery.get_absolute_url}}">
+                                <figure class="item-thumb"> <img width="750" height="500" src="{{gallery.get_cover_url}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-main">{{gallery.title}}</p>
+                                <p class="item-byline">{{gallery.location}}</p>
+                            </div><a class="btn item-btn" href="{{gallery.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ci-items-3" class="widget group widget_ci-items">
+        <div class="widget-wrap ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="section-title">Videos</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for video in videos %}
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="item cpt_video "> <a class="item-hold" href="{{ video.get_absolute_url }}">
+                                <figure class="item-thumb"> <img width="750" height="500" src="{{video.cover.url}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" srcset="{{video.cover.url}} 750w,
+                                {{video.cover.url}} 300w, {{video.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-main">{{video.title}}</p>
+                                <p class="item-byline">{{video.location}}</p>
+                            </div><a class="btn item-btn" href="{{video.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ci-tracklisting-2" class="widget group widget_ci-tracklisting">
+        {% include "snippets/latest_album_snippet.html" %}
+
+    </section>
+
+    <section id="ci-items-5" class="widget group widget_ci-items">
+        <div class="widget-wrap ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="section-title">Blog</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for blog in blogPosts %}
+
+
+                    <div class="col-xs-12">
+                        <div class="item post  item-fullwidth "> <a class="item-hold" href="{{blog.get_absolute_url}}">
+                                <figure class="item-thumb"> <img width="1140" height="380" src="{{blog.cover.url}}" class="attachment-ci_blog_full size-ci_blog_full wp-post-image" alt="" loading="lazy" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-intro">{{blog.created_on | date }}</p>
+                                <p class="item-title-main">{{blog.title}}</p>
+                            </div><a class="btn item-btn" href="{{blog.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ci-items-4" class="widget group widget_ci-items">
+        <div class="widget-wrap ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="section-title">Eshop</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    {% include "snippets/products.html" with products=eShop %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+</main>
+
+{% endwith %}
+
+{% endblock content %}

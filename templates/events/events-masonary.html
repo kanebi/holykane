@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}
+Events Masonry || Holykane
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="event-list">
+                    <h3 class="section-title">Upcoming Events</h3>
+                    <ul class="filters-nav group">
+
+                        <li><a href="#filter" class="selected btn small transparent" data-filter="*">All Items</a></li>
+                        {% for keys, category in event_categories %}
+
+                        <li><a href="#filter" class="btn small transparent" data-filter=".{{category}}">{{category}}</a></li>
+
+                        {% endfor %}
+                    </ul>
+                    <div class="row item-list list-masonry">
+                        {% for event in upcoming_events %}
+
+                        <div class="col-xs-12 col-sm-6 col-md-4  {{event.get_category_display}}">
+                            <div class="item post-49 cpt_event type-cpt_event status-publish has-post-thumbnail hentry event-category-shows"> <a href="{{event.get_absolute_url}}" class="item-hold">
+                                    <figure class="item-thumb"> <img width="750" height="600" src="{{event.cover.url}}" class="attachment-ci_masonry size-ci_masonry wp-post-image" alt="" loading="lazy" srcset="{{event.cover.url}} 750w, {{event.cover.url}} 300w, {{event.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                                </a>
+                                <div class="item-info">
+                                    <p class="item-title-intro">{{event.date_time | date}}</p>
+                                    <p class="item-title-main">{{event.venue}}</p>
+                                    <p class="item-byline">{{event.location}}</p>
+                                </div><a class="btn item-btn" href="{{event.get_absolute_url}}">Read More »</a>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <center>
+                            Nothing to show
+
+                        </center>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="event-list">
+                    <h3 class="section-title">Past Events</h3>
+                    <ul class="filters-nav group">
+                        <li><a href="#filter" class="selected btn small transparent" data-filter="*">All Items</a></li>
+                        {% for keys, category in event_categories %}
+
+                        <li><a href="#filter" class="btn small transparent" data-filter=".{{category}}">{{category}}</a></li>
+
+                        {% endfor %}
+                    </ul>
+                    <div class="row item-list list-masonry">
+                        {% for event in past_events %}
+
+                        <div class="col-xs-12 col-sm-6 col-md-4  {{event.get_category_display}}">
+                            <div class="item post-49 cpt_event type-cpt_event status-publish has-post-thumbnail hentry event-category-shows"> <a href="{{event.get_absolute_url}}" class="item-hold">
+                                    <figure class="item-thumb"> <img width="750" height="600" src="{{event.cover.url}}" class="attachment-ci_masonry size-ci_masonry wp-post-image" alt="" loading="lazy" srcset="{{event.cover.url}} 750w, {{event.cover.url}} 300w, {{event.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                                </a>
+                                <div class="item-info">
+                                    <p class="item-title-intro">{{event.date_time | date}}</p>
+                                    <p class="item-title-main">{{event.venue}}</p>
+                                    <p class="item-byline">{{event.location}}</p>
+                                </div><a class="btn item-btn" href="{{event.get_absolute_url}}">Read More »</a>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <center>
+                            Nothing to show
+
+                        </center>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

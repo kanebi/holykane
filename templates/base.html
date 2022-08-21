@@ -1,0 +1,305 @@
+{% load static %}
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en-US">
+<!--<![endif]-->
+<!-- Mirrored from www.cssigniter.com/vip/solo/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Aug 2022 11:14:28 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+    <title>
+        {% block title %}
+
+        Home - HolyKane - Solo Artist
+        {% endblock title %}
+    </title>
+
+
+    {% block head %}
+
+    {% endblock head %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/css/ol.css" type="text/css">
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
+    <link rel="canonical" href="/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Home - HolyKane - Solo Artist" />
+    <meta property="og:url" content="/" />
+    <meta property="og:site_name" content="HolyKane - Solo Artist" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" class="yoast-schema-graph">
+    {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.cssigniter.com/vip/solo/#website","url":"https://www.cssigniter.com/vip/solo/","name":"HolyKane - Solo Artist","description":"Music theme for WordPress","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.cssigniter.com/vip/solo/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.cssigniter.com/vip/solo/#webpage","url":"https://www.cssigniter.com/vip/solo/","name":"Home - HolyKane - Solo Artist","isPartOf":{"@id":"https://www.cssigniter.com/vip/solo/#website"},"datePublished":"2014-09-22T08:37:59+00:00","dateModified":"2014-09-22T08:37:59+00:00","breadcrumb":{"@id":"https://www.cssigniter.com/vip/solo/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.cssigniter.com/vip/solo/"]}]},{"@type":"BreadcrumbList","@id":"https://www.cssigniter.com/vip/solo/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]}]}</script>
+    <link rel='dns-prefetch' href='http://maps.googleapis.com/' />
+    <link rel='dns-prefetch' href='http://use.typekit.net/' />
+    <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+    <link rel='dns-prefetch' href='http://ajax.googleapis.com/' />
+    <link rel='dns-prefetch' href='http://connect.facebook.net/' />
+    <link rel='dns-prefetch' href='http://www.google-analytics.com/' />
+    <link rel='dns-prefetch' href='http://www.googletagmanager.com/' />
+    <link rel='dns-prefetch' href='http://maps.google.com/' />
+    <link rel='dns-prefetch' href='http://www.gstatic.com/' />
+    <link rel="alternate" type="application/rss+xml" title="HolyKane - Solo Artist &raquo; Feed" href="/feed" />
+    <link rel="alternate" type="application/rss+xml" title="HolyKane - Solo Artist &raquo; Comments Feed" href="/comments/feed" />
+    <link rel="alternate" type="application/rss+xml" title="HolyKane - Solo Artist &raquo; Home Comments Feed" href="/" />
+    <link rel='stylesheet' id='wc-blocks-vendors-style-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-vendors-style-6.5.2.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='wc-blocks-style-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-style-6.5.2.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/contact-form-7/includes/css/styles-5.5.4.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/socials-ignited/css/font-awesome-4.7.0.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='socials-ignited-css' href='{% static "wp-content/plugins/socials-ignited/css/style.css" %}' type='text/css' media='all' />
+    <style id='socials-ignited-inline-css' type='text/css'>
+        .alert-info {
+            background-color: rgb(88, 161, 192);
+        }
+
+        .alert-success {
+            background-color: rgb(50, 197, 50);
+        }
+
+        .alert-error {
+            background-color: rgb(197, 22, 22);
+        }
+
+        .alert {
+            position: fixed;
+            z-index: 10;
+        }
+
+        #socials-ignited-2 i {
+            color: #fff;
+            background: #ed145b;
+            font-size: 18px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 80px;
+            opacity: 1
+        }
+
+        #socials-ignited-3 i {
+            color: #fff;
+            background: #ed145b;
+            font-size: 17px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 2px;
+            opacity: 1
+        }
+    </style>
+    <style id='woocommerce-inline-inline-css' type='text/css'>
+        .woocommerce form .form-row .required {
+            visibility: visible
+        }
+    </style>
+    <link rel='stylesheet' id='ci-google-font-css' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C900%2C400italic&amp;ver=5.8.3' type='text/css' media='all' />
+    <link rel='stylesheet' id='ci-base-css' href='{% static "wp-content/themes/chords/css/base.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='ci-theme-common-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/common/css/global-2.7.1.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='ci-flexslider-css' href='{% static "wp-content/themes/chords/css/flexslider.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='mmenu-css' href='{% static "wp-content/themes/chords/css/mmenu.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='stapel-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/css/stapel-1.10.4.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='ci-style-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/style-2.7.1.css" %}' type='text/css' media='all' />
+    <style id='ci-style-inline-css' type='text/css'>
+        #ci-newsletter-2 .widget-wrap {
+            color: #fff;
+            background-color: #ed145b
+        }
+
+        #ci-newsletter-3 .widget-wrap {
+            color: #fff;
+            background-color: #ed145b
+        }
+
+        #ci-tracklisting-2 .widget-wrap {
+            background-color: #1d1d1d
+        }
+
+        #ci-items-2 .widget-wrap {
+            padding-bottom: 0;
+            margin-bottom: -30px
+        }
+
+        #ci-items-4 .widget-wrap {
+            background-color: #1d1d1d
+        }
+
+        #ci-split-content-2 .widget-wrap {
+            background-image: url(/static/wp-content/uploads/sites/2/2014/09/about.jpg);
+            background-repeat: no-repeat
+        }
+    </style>
+    <link rel='stylesheet' id='ci-color-scheme-css' href='{% static "wp-content/themes/chords/colors/default.css" %}' type='text/css' media='all' />
+    <style id='ci-color-scheme-inline-css' type='text/css'>
+        #header {
+            background: none;
+            border: none
+        }
+    </style>
+    <link rel='stylesheet' id='woocommerce_prettyPhoto_css-css' href='{% static "wp-content/themes/chords/css/prettyPhoto.css" %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='ci-videos-styles-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/ci-videos/assets/css/ci-videos-styles-1.0.css" %}' type='text/css' media='all' />
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/jquery/jquery.min-3.6.0.js" %}' id='jquery-core-js'></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/jquery/jquery-migrate.min-3.3.2.js" %}' id='jquery-migrate-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/panel/scripts/modernizr-2.6.2-2.7.1.js" %}' id='modernizr-js' defer></script>
+    <script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?v=3&amp;key=AIzaSyC40LE1UxvNiQjLoJiwWpuPNsf98JAkpDw" id='google-maps-js'></script>
+    <link rel="https://api.w.org/" href="wp-json//" />
+    <link rel="alternate" type="application/json" href="wp-json/wp/v2/pages/6.json" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc0db0.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wp-includes/wlwmanifest.xml" />
+    <meta name="generator" content="WordPress 5.8.3" />
+    <meta name="generator" content="WooCommerce 6.1.1" />
+    <link rel='shortlink' href='/' />
+    <link rel="alternate" type="application/json+oembed" href="wp-json/oembed/1.0/embed31da.json?url=https%3A%2F%2Fwww.cssigniter.com%2Fvip%2Fsolo%2F" />
+    <link rel="alternate" type="text/xml+oembed" href="wp-json/oembed/1.0/embed14ee?url=https%3A%2F%2Fwww.cssigniter.com%2Fvip%2Fsolo%2F&amp;format=xml" />
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js" %}'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WFB88G3');</script>
+    <noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important
+            }
+        </style>
+    </noscript>
+
+    <style type="text/css" id="wp-custom-css">
+        @media (max-width:1031px) {
+            #page {
+                padding-top: 33px
+            }
+
+            #nav {
+                display: none
+            }
+
+            #mobilemenu {
+                display: block
+            }
+
+            #mobile-bar {
+                display: block
+            }
+
+            .nav-secondary-wrap {
+                top: 31px
+            }
+        }
+
+        @media (max-width:797px) {
+            .nav-secondary-wrap {
+                top: -90px
+            }
+        }
+    </style><noscript>
+        <style id="rocket-lazyload-nojs-css">
+            .rll-youtube-player,
+            [data-lazy-src] {
+                display: none !important
+            }
+        </style>
+    </noscript>
+    <!-- <script src="https://unpkg.com/wavesurfer.js"></script> -->
+
+    <script src="{% static 'js/wavesurfer.js' %}"></script>
+
+</head>
+
+<body class="home page-template page-template-template-frontpage page-template-template-frontpage-php page page-id-6 theme-chords woocommerce-no-js ci-chords ci-chords-2-7-1 ci-scheme-default ci-dark-scheme">
+
+    <div id="page">
+        <div id="mobile-bar"> <a class="menu-trigger" href="#mobilemenu"><i class="fa fa-bars"></i></a>
+            <h1 class="mob-title">Holykane &#8211; Solo Artist</h1>
+        </div>
+
+        {% if messages %}
+
+        {% for message in messages %}
+
+        <div class="alert alert-{{message.tags}} position-absolute" style="padding: 10px;height: 50px;z-index: 50;" role="alert">
+
+            <p> {{message}}</p>
+            <p class="mb-0"></p>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+        {% include "layouts/header.html" %}
+        {% block aside %}
+
+        {% endblock aside %}
+        {% block content %}
+
+        {% endblock content %}
+        {% include "snippets/newsletter_sn.html" %}
+
+        {% include "layouts/footer.html" %}
+    </div>
+    <div class="player-main-cont" style="position: fixed;margin: 10px;bottom: 0;left: 0;z-index: 10;">
+        {% include "snippets/player.html" %}
+
+    </div>
+    <script type="text/javascript">(function () {
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+            document.body.className = c;
+        })();</script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/dist/vendor/regenerator-runtime.min-0.13.7.js" %}' id='regenerator-runtime-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/dist/vendor/wp-polyfill.min-3.15.0.js" %}' id='wp-polyfill-js' defer></script>
+    <script type='text/javascript' id='contact-form-7-js-extra'>/* <![CDATA[ */ var wpcf7 = { "api": { "root": "https:\/\/www.cssigniter.com\/vip\/solo\/wp-json\/", "namespace": "contact-form-7\/v1" }, "cached": "1" }; /* ]]> */</script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/contact-form-7/includes/js-5.5.4.js" %}' id='contact-form-7-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min-2.7.0-wc.6.1.1.js" %}' id='jquery-blockui-js' defer></script>
+    <script type='text/javascript' id='wc-add-to-cart-js-extra'>/* <![CDATA[ */ var wc_add_to_cart_params = { "ajax_url": "\/vip\/solo\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/vip\/solo\/?wc-ajax=%%endpoint%%", "i18n_view_cart": "View cart", "cart_url": "https:\/\/www.cssigniter.com\/vip\/solo\/cart\/", "is_cart": "", "cart_redirect_after_add": "no" }; /* ]]> */</script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min-6.1.1.js" %}' id='wc-add-to-cart-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min-2.1.4-wc.6.1.1.js" %}' id='js-cookie-js' defer></script>
+    <script type='text/javascript' id='woocommerce-js-extra'>/* <![CDATA[ */ var woocommerce_params = { "ajax_url": "\/vip\/solo\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/vip\/solo\/?wc-ajax=%%endpoint%%" }; /* ]]> */</script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min-6.1.1.js" %}' id='woocommerce-js' defer></script>
+    <script type='text/javascript' id='wc-cart-fragments-js-extra'>/* <![CDATA[ */ var wc_cart_fragments_params = { "ajax_url": "\/vip\/solo\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/vip\/solo\/?wc-ajax=%%endpoint%%", "cart_hash_key": "wc_cart_hash_6ce56b62fb0316e469fbf924f683d7bd", "fragment_name": "wc_fragments_6ce56b62fb0316e469fbf924f683d7bd", "request_timeout": "5000" }; /* ]]> */</script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min-6.1.1.js" %}' id='wc-cart-fragments-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-includes/js/comment-reply.min.js" %}' id='comment-reply-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/themes/chords/js/superfish.js" %}' id='jquery-superfish-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/themes/chords/js/jquery.mmenu.min.all.js" %}' id='jquery-mmenu-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/themes/chords/js/jquery.flexslider.js" %}' id='jquery-flexslider-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/themes/chords/js/jquery.matchHeight-min.js" %}' id='jquery-matchHeight-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/panel/scripts/jquery.fitvids-2.7.1.js" %}' id='jquery-fitVids-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/js/jquery.prettyPhoto.min-3.1.6.js" %}' id='prettyPhoto-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/themes/chords/js/jquery.isotope.js" %}' id='jquery-isotope-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/js/parallax.min-1.3.1.js" %}' id='parallax-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/js/jquery.shoutcast.min-2.7.1.js" %}' id='jquery-shoutcast-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/js/soundmanager2-2.97.js" %}' id='soundmanager-core-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/js/inlineplayer-2.97.js" %}' id='inline-player-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/js/ci_audioplayer-2.97.js" %}' id='ci-audioplayer-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/themes/chords/js/jquery.stapel.js" %}' id='stapel-js' defer></script>
+    <script type='text/javascript' id='ci-front-scripts-js-extra'>/* <![CDATA[ */ var ThemeOption = { "theme_url": "https:\/\/www.cssigniter.com\/vip\/solo\/wp-content\/themes\/chords", "slider_auto": "", "swfPath": "https:\/\/www.cssigniter.com\/vip\/solo\/wp-content\/themes\/chords\/js\/swf\/", "slider_autoslide": "1", "slider_effect": "fade", "slider_direction": "horizontal", "slider_duration": "600", "slider_speed": "5000" }; /* ]]> */</script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/js/scripts-2.7.1.js" %}' id='ci-front-scripts-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/panel/components/retinajs/dist/retina-2.7.1.js" %}' id='retinajs-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/ci-videos/assets/js/ci-videos-scripts-1.0.js" %}' id='ci-videos-scripts-js' defer></script>
+    <script type='text/javascript' src='{% static "wp-includes/js/wp-embed.min.js" %}' id='wp-embed-js' defer></script>
+
+    <script type='text/javascript' id='wc-single-product-js-extra'>/* <![CDATA[ */ var wc_single_product_params = { "i18n_required_rating_text": "Please select a rating", "review_rating_required": "yes", "flexslider": { "rtl": false, "animation": "slide", "smoothHeight": true, "directionNav": false, "controlNav": "thumbnails", "slideshow": false, "animationSpeed": 500, "animationLoop": false, "allowOneSlide": false }, "zoom_enabled": "", "zoom_options": [], "photoswipe_enabled": "", "photoswipe_options": { "shareEl": false, "closeOnScroll": false, "history": false, "hideAnimationDuration": 0, "showAnimationDuration": 0 }, "flexslider_enabled": "" }; /* ]]> */</script>
+    <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-content/plugins/woocommerce/assets/js/frontend/single-product.min-6.1.1.js" %}' id='wc-single-product-js' defer></script>
+
+
+    {% block js %}
+
+    {% endblock js %}
+
+</body>
+<!-- Mirrored from www.cssigniter.com/vip/solo/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Aug 2022 11:15:20 GMT -->
+
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1645348143 -->

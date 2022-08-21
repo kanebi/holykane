@@ -1,0 +1,42 @@
+{% for product in products %}
+
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="item product type-product post-104 status-publish first instock product_cat-albums has-post-thumbnail sale shipping-taxable purchasable product-type-simple"><a href="{{product.get_shop_url}}">
+            <figure class="item-thumb"> <img width="750" height="743" src="{{product.cover.url}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="
+            {{product.cover.url}} 750w, {{product.cover.url}} 150w, {{product.cover.url}} 300w, {{product.cover.url}} 100w, {{product.cover.url}} 110w, {{product.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+        </a>
+        <div class="item-info">
+            <p class="item-title-main"> {{product.title}}</p>
+            <p class="item-byline">
+                {% if product.available_discount %}
+
+                <span class="price"><del aria-hidden="true">
+                        <span class="woocommerce-Price-amount amount">
+                            <bdi><span class="woocommerce-Price-currencySymbol"></span>{{product.price}}</bdi>
+                        </span></del>
+                </span>
+                <span class="woocommerce-Price-amount amount"><bdi>
+                        {{product.discount_price}}</bdi>
+                </span> <span class="onsale">Sale!</span>
+
+                {% else %}
+
+
+
+
+                <bdi><span class="woocommerce-Price-currencySymbol"></span>{{product.price}}</bdi></span></del>
+
+                {% endif %}
+
+            </p>
+        </div><a class="btn item-btn" href="{{product.get_shop_url}}"> View More </a>
+    </div>
+</div>
+{% empty %}
+<center>
+    <h3 style="font-family: 'Courier New', Courier, monospace;">Nothing found</h3>
+    <a href="/shop">Continue Shopping <i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+
+</center>
+{% endfor %}

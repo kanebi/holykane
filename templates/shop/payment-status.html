@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Order Status - Holykane - Solo Artist - Payment {{order.payment.get_status_display}}
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+
+<script>
+    jQuery('#order_ag').on('click', () => {
+        jQuery('body').load(`{% url "shop:checkout" %}`)
+    })
+
+    jQuery('#order_detail').on('click', () => {
+        jQuery('body').load(`{% url "shop:order-detail" order.ref_code %}`)
+    })
+
+</script>
+{% if order.payment.status == 's' %}
+
+<div class="container">
+    <!-- <div class="row"> -->
+    <div class="text-center " style="text-align: center;padding: 20px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        <h1>
+            Order Received
+
+        </h1>
+        <b> code #{{order.ref_code}}
+
+
+        </b>
+        <div class="circle  primary" style=" box-shadow: 2px 1px 1px 1px rgb(63, 33, 42);margin: 30px auto;text-align: center;font-size: 60px;height: 150px;width: 150px;padding: 30px ;border-radius:100px;background-color:rgb(38, 143, 69)">
+
+
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+            <!-- </div> -->
+        </div> <small>Order Successful</small>
+        <br>
+        <button id="order_btn" data-url="{{order.get_absolute_url}}">View Order Detail</button>
+
+    </div>
+</div>
+{% endif %}
+{% if order.payment.status == 'p' %}
+
+<div class="container">
+    <!-- <div class="row"> -->
+    <div class="text-center " style="text-align: center;padding: 20px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        <h1>
+            Order completed </h1>
+
+        <p>waiting confirmation..</p>
+
+
+        <div class="circle  primary" style=" box-shadow: 2px 1px 1px 1px rgb(63, 33, 42);margin: 30px auto;text-align: center;font-size: 60px;height: 150px;width: 150px;padding: 30px ;border-radius:100px;background-color:rgb(145, 131, 131)">
+
+
+            <i class="fa fa-smile-o" aria-hidden="true"></i> <!-- </div> -->
+        </div> <small>Order pending</small> <br>
+        <button id="order_btn" data-url="{{order.get_absolute_url}}">Order Detail</button>
+
+    </div>
+</div>
+
+{% endif %}
+{% if order.payment.status == 'f' %}
+
+<div class="container">
+    <!-- <div class="row"> -->
+    <div class="text-center " style="text-align: center;padding: 20px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        <h1>
+            Order Cannot be completed
+
+        </h1>
+
+        <div class="circle  primary" style=" box-shadow: 2px 1px 1px 1px rgb(63, 33, 42);margin: 30px auto;text-align: center;font-size: 60px;height: 150px;width: 150px;padding: 30px ;border-radius:100px;background-color:rgb(207, 23, 23)">
+
+
+            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+            <!-- </div> -->
+        </div> <small>Order failed</small> <br>
+
+        <button id="order_btn" data-url="/shop/checkout">Order Again</button>
+
+    </div>
+</div>
+{% endif %}
+
+{% include "snippets/latest_album_snippet.html" %}
+
+<script>
+    jQuery('#order_btn').on('click', (e) => {
+        jQuery('body').load(jQuery('#order_btn').data('url'))
+    })
+</script>
+
+
+{% endblock content %}

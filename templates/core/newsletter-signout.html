@@ -1,0 +1,20 @@
+<title>
+    Holykane Solo - Newsletter Signout
+</title>
+{% include "snippets/head.html" %}
+<section id="ci-newsletter-2" class="widget group widget_ci-newsletter">
+    <div class="widget-wrap ">
+        <div class="container">
+            <form action="{% url 'newsletter_signout' %}" method="post" class="ci-newsletter-form">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-5 col-sm-12"> <label for="e_id">Sign-out from our newsletter</label> <span>Stop receiving our emails?</span></div>
+                    <div class="col-md-7 col-sm-12">
+                        <div class="input-group"> <input type="email" name="email" id="e_id" placeholder="Your e-mail"> <button type="submit" class="btn">Unsubscribe </button></div>
+                    </div>
+                </div> <input type="hidden" name="hidden1" value="value1" /><input type="hidden" name="hidden2" value="value2" />
+            </form>
+        </div>
+    </div>
+</section>
+{% include "snippets/foot.html" %}

@@ -1,0 +1,109 @@
+{% block content %}
+{% load static %}
+{% load account %}
+{% load i18n %}
+
+<td align="center" valign="top" width="100%">
+
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:800px;padding-bottom:20px;padding-top:10px" bgcolor="#100e0e">
+        <tbody>
+            <tr>
+                <td align="center" valign="top" style="font-size:14px;color:#ffffff;display:grid">
+                    <div style="background:#100e0e;padding-left:10px;padding-right:10px;padding-bottom:7px">
+                        <a href="tel:+2349024524845" style="color:#fff;text-decoration:none;float:left;padding-top:3px;font-size:10px;font-family:'Myriad Pro'" target="_blank">CALL US: +2349024524845</a>
+                        <div id="m_-8289766385829463966storeIcons" style="float:right">
+                            {% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+                            <a href="{{site_domain}}/My-account" style="text-decoration:none;color:#fff;font-family:'Myriad Pro';font-size:10px;text-transform:uppercase" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://url6349.mayors.com/ls/click?upn%3DUUTEeo1aaBmDrVkIAltfuWJJDCIMxLqo8oeLPuacNd7MCzr00zoWYv52Z9DX9AYB6l_s_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNpXZrtpF6P2UBM7xvyp176qmJ-2BohvcB9juFSVC4W6drwoMAQXO8eXyQyqAGJOSGHw0MKdBtgvE9de4OZGgtkTgLV-2BSFXhaTk-2BtgNSzdHF92NVI2-2BUhdHjE-2BNjImHqyC6phJ4S2QXhLlT6CJLruzZjzw-3D-3D&amp;source=gmail&amp;ust=1639009483550000&amp;usg=AOvVaw092NJZAuDfoCo_Lw3ivXMJ"><img src="https://ci4.googleusercontent.com/proxy/Hda7T92WeA0Pq2Zr6-F946e69qnm2QQUP6tHJtXjuUdKT4UAYnEC266QdfnSH-c5FaCxEkLCKnnORE5jlObjNkAJbDGQaDVQKjaUyliy7pqz5HHpsSR68V_Dkg=s0-d-e1-ft#https://content.thewosgroup.com/mayors/emails/images/my-account-icon.png" class="CToWUd">&nbsp;&nbsp; My Account</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="{{site_domain}}"><img src="https://ci3.googleusercontent.com/proxy/FYj91ahl7X5HGE1qeNk2e4sq--0B_sds1NTTzGhuPG97iNAK6Mzemh0g_JMsH6xe_iC0oFf5vkVOwHOwT9NAW44mvNZxGkDvBTVcE0YzjLp1mWkz_gw=s0-d-e1-ft#https://content.thewosgroup.com/mayors/emails/images/store-icon.png" class="CToWUd">&nbsp;&nbsp; Stores</a>
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+
+                    <h3> | Holykane Solo</h3>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:800px;padding-bottom:20px;padding-top:20px" bgcolor="#ffffff">
+        <tbody>
+            <tr>
+                <td align="left" valign="top" style="color:#1c1c1c;font-size:14px">
+
+                    <span style="color:#000">
+                        <h2 style="font-family:Libre Baskerville;font-weight:400;text-transform:uppercase;padding-bottom:10px;font-size:16px;letter-spacing:1.3px">Customer Registration</h2>
+                    </span>
+                    <p></p>
+                    <p style="font-family:'Myriad Pro';padding-bottom:5px;line-height:1.40em">
+                        <span style="color:#000">
+                            Dear {{user}}<br>
+                        </span>
+                        <br>
+                        <span style="color:#000">
+                            Thank you for choosing to register with | Holykane Solo. Your new account is almost ready, but before you can login you need to confirm your email address by visiting the link below:
+                        </span><br>
+                    </p>
+                    Click here {{ activate_url }} to verify your account
+                    <p style="font-family:'Myriad Pro';padding-bottom:5px;line-height:1.40em">
+                        <span style="color:#000">
+                            When accessing your account, you may update your details or check your order history at any time. Your account can be reached by visiting our website or via the link below.
+                        </span>
+                    </p>
+                    {% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}{{ site_domain }}.{% endblocktrans %}{% endautoescape %}
+                    <span style="color:#000">
+                        <p>
+                            If you have any further questions, our Ecommerce team can be contacted at <a href="tel:+2349024524845" target="_blank"><strong>+2349024524845</strong></a> during the following times: </p>
+                    </span>
+                    <span style="color:#000">
+                        <p>
+                            Monday to Saturday: 9:00am - 7:00pm<br>
+                            Sunday: 9:00am - 5:00pm<br>
+                            Closed Easter Sunday, Thanksgiving day and Christmas day.<br><br>
+                        </p>
+                    </span>
+                    <span style="color:#000">
+                        <p>Alternatively you can email us at <a href="mailto:holykane@gmail.com" style="color:#555555" target="_blank">holykane@gmail.com </a>.</p>
+                    </span>
+                    <p>
+                        <span style="color:#000">
+                            Best wishes,<br>
+                        </span>
+                        <span style="color:#000">
+                            The One-luxery Team
+                        </span>
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:800px;padding-bottom:10px;padding-top:10px" bgcolor="#f5f5f5">
+        <tbody>
+            <tr>
+                <td align="center" valign="top" style="font-size:14px;color:#000">
+
+                    <br>
+                    <br>
+                    <br>
+                    <small>You're receiving this e-mail because user {{ user_display }} has given your e-mail address to register an account on this website.</small>
+                    <div>
+                        <a href="http://url6349.mayors.com/ls/click?upn=UUTEeo1aaBmDrVkIAltfuY69GotIAYavQr7EE7aZ0zhPCN1GjtO-2BdOtGdmzsxZ2522Xq_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNyGbCQNq909ldKve9vrDsO1P62rGUq3GxnPibqZDyUzDociem73Q8dQblClEgAX9hEXRqsZ2cYDEkHFAd13cxQwzSjvpctvtA2W2uSM-2BxBCW4R-2BKkfy0BK2K95ODUpk8mk3uVegvL2kKrkiFBk8HIMA-3D-3D" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://url6349.mayors.com/ls/click?upn%3DUUTEeo1aaBmDrVkIAltfuY69GotIAYavQr7EE7aZ0zhPCN1GjtO-2BdOtGdmzsxZ2522Xq_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNyGbCQNq909ldKve9vrDsO1P62rGUq3GxnPibqZDyUzDociem73Q8dQblClEgAX9hEXRqsZ2cYDEkHFAd13cxQwzSjvpctvtA2W2uSM-2BxBCW4R-2BKkfy0BK2K95ODUpk8mk3uVegvL2kKrkiFBk8HIMA-3D-3D&amp;source=gmail&amp;ust=1639009483550000&amp;usg=AOvVaw0HrQr2bZDDxuFoiHcQ8QIt"><img src="https://ci6.googleusercontent.com/proxy/RGquy2BQsNwtj0uIbKmCRtYeql1ZQ9ToEGcPd32FUzY4dn1xlUCdwshJ2WL1iYflI-3T_AaPGbhXuJC4P2Q0LGs8iZI_GnNpoainaoBOf4c5oo6S2uLX6Q=s0-d-e1-ft#https://content.thewosgroup.com/mayors/emails/images/facebookIcon.png" class="CToWUd"></a>&nbsp;
+                        <a href="http://url6349.mayors.com/ls/click?upn=UUTEeo1aaBmDrVkIAltfuWt0yAd7l7DFKOagYXbIt-2FZV6AUqrMR0cfgT9xIQKmU-2BvF6v_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNVL4JyjcZ4E4EP2r9ISbGy6Y3YeiZdepvH3VkN0HI1JstrJtTRXv6HQIpej3lk-2Bo1uHbkxOdVw5kd-2B1PPKzu6BKlOnmgQ8aum5fCFsH-2By1iOUkpP6xDuw7RkgZ-2ByqGkzBDtp5hg4hARXnNu-2BIdPnjtw-3D-3D" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://url6349.mayors.com/ls/click?upn%3DUUTEeo1aaBmDrVkIAltfuWt0yAd7l7DFKOagYXbIt-2FZV6AUqrMR0cfgT9xIQKmU-2BvF6v_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNVL4JyjcZ4E4EP2r9ISbGy6Y3YeiZdepvH3VkN0HI1JstrJtTRXv6HQIpej3lk-2Bo1uHbkxOdVw5kd-2B1PPKzu6BKlOnmgQ8aum5fCFsH-2By1iOUkpP6xDuw7RkgZ-2ByqGkzBDtp5hg4hARXnNu-2BIdPnjtw-3D-3D&amp;source=gmail&amp;ust=1639009483550000&amp;usg=AOvVaw1ufbtFkbBDy9IGYQzVXrdP"><img src="https://ci6.googleusercontent.com/proxy/Wh1kZbBWSOecVHKNWOdfTTGXzPlqhtITNvwgBrCYIumFBcHmgG746K-0U8nDCNmfZ0IA2Lg_mz6tvYIxUlbAW_Ggzk_Rnq003RywguLXwIi8Dts5d3v1=s0-d-e1-ft#https://content.thewosgroup.com/mayors/emails/images/twitterIcon.png" class="CToWUd"></a>&nbsp;
+                        <a href="http://url6349.mayors.com/ls/click?upn=UUTEeo1aaBmDrVkIAltfuSqWQqt54CedpVD85j6AEnVYcj9yA3ZSngAs3nTVEEYFy4bStVuRKSxYtkXRhEVIGg-3D-3DMvwz_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNxg5YiMVQryTJUYQIkUiJN-2FLZVj9jZRmTw1OREOrkSBM67D-2Baaat8x6ue9HWsH-2Br-2FRdS-2BCPUgevQnp2cYGFeyK0xy6yDS0aAUz4KF8NPm0suRQdJznxahbVjP7udhr1HDoBxLWVj5qHwFkEviu3JAuA-3D-3D" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://url6349.mayors.com/ls/click?upn%3DUUTEeo1aaBmDrVkIAltfuSqWQqt54CedpVD85j6AEnVYcj9yA3ZSngAs3nTVEEYFy4bStVuRKSxYtkXRhEVIGg-3D-3DMvwz_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNxg5YiMVQryTJUYQIkUiJN-2FLZVj9jZRmTw1OREOrkSBM67D-2Baaat8x6ue9HWsH-2Br-2FRdS-2BCPUgevQnp2cYGFeyK0xy6yDS0aAUz4KF8NPm0suRQdJznxahbVjP7udhr1HDoBxLWVj5qHwFkEviu3JAuA-3D-3D&amp;source=gmail&amp;ust=1639009483551000&amp;usg=AOvVaw3S86M3nmmSyXeg49D1eAGz"><img src="https://ci6.googleusercontent.com/proxy/SFt-kl5NYUwQJmFEWm0kGiY0CejO18lXmcRbf0xMpCIEpTVUX4DWa5pCoGTgpPN0thtGSFwLgA5JuNs_lN7t44ICr0qfkt5cRq_r94xyEPH-eW9wJnE1W5k=s0-d-e1-ft#https://content.thewosgroup.com/mayors/emails/images/instagramIcon.png" class="CToWUd"></a>
+                    </div>
+                    <br>
+                    <div>
+                        <a href="http://url6349.mayors.com/ls/click?upn=UUTEeo1aaBmDrVkIAltfuQu9pJiDYQNHTSSSceRbdb2kZCaUhubg5G6kdT0cAnekXUOt_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNvt1BDdNYmzQzRGrld9Qy1CG6TDk8pyG9nzMT2hLEvEXzVbv4ZxvEJwvmSbEgMjoTfMihww3uEU4lvn-2F0VLchkRkGBGJGd5UWLEkpiRCTtArXjwFfhJi7VNeIvB78vUTiWl0n1UTLz5VBvlnXPXOw3A-3D-3D" style="color:#000;text-decoration:none;font-size:16px;font-family:'Myriad Pro'" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://url6349.mayors.com/ls/click?upn%3DUUTEeo1aaBmDrVkIAltfuQu9pJiDYQNHTSSSceRbdb2kZCaUhubg5G6kdT0cAnekXUOt_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNvt1BDdNYmzQzRGrld9Qy1CG6TDk8pyG9nzMT2hLEvEXzVbv4ZxvEJwvmSbEgMjoTfMihww3uEU4lvn-2F0VLchkRkGBGJGd5UWLEkpiRCTtArXjwFfhJi7VNeIvB78vUTiWl0n1UTLz5VBvlnXPXOw3A-3D-3D&amp;source=gmail&amp;ust=1639009483551000&amp;usg=AOvVaw1Hp3nxhFCSUEwpnFYNEs76">Terms of Use</a>&nbsp; &nbsp; &nbsp; <a href="http://url6349.mayors.com/ls/click?upn=UUTEeo1aaBmDrVkIAltfuWfuCgd-2B36sfySvJgb2TFUJxxx8QJTjZBXJhyv3Z-2FLgdVgEr_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNYK0hpAgcbpKbOFGa2nD2ekrkDqo0t-2B4B4zt221IC5aaaQqfw9e0YeyQ9ZYbuP-2FAoK59B-2Ffhc98NvWRW0qbWj9H-2FcsRbpnx3QdXP0YnfnFSx9uQb-2FUyr0wPR-2FhJ-2FKi3HJD-2FyUpV5uTohMzwXDw8RUug-3D-3D" style="color:#000;text-decoration:none;font-size:16px;font-family:'Myriad Pro'" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://url6349.mayors.com/ls/click?upn%3DUUTEeo1aaBmDrVkIAltfuWfuCgd-2B36sfySvJgb2TFUJxxx8QJTjZBXJhyv3Z-2FLgdVgEr_2zGAeIxw3lMmVwtYU3bt78l3Bn-2F2p0l4CnhlTurk248RBQnMkpoqoFZoVRTifiMNYK0hpAgcbpKbOFGa2nD2ekrkDqo0t-2B4B4zt221IC5aaaQqfw9e0YeyQ9ZYbuP-2FAoK59B-2Ffhc98NvWRW0qbWj9H-2FcsRbpnx3QdXP0YnfnFSx9uQb-2FUyr0wPR-2FhJ-2FKi3HJD-2FyUpV5uTohMzwXDw8RUug-3D-3D&amp;source=gmail&amp;ust=1639009483551000&amp;usg=AOvVaw36MhmhaGe_QR9kYSx_mW7b">Privacy Policy</a>
+                    </div>
+                    <p style="font-family:'Myriad Pro'">Copyright © 2021 | Holykane Solo. All rights reserved.</p>
+                    <br>
+                    <br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</td>
+{% endblock content %}

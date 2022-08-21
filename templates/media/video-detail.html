@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+Video details | {{video.title}}| Holykane solo
+{% endblock title %}
+
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <article id="entry-68" class="entry post-68 cpt_video type-cpt_video status-publish has-post-thumbnail hentry video-category-live">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="section-title">{{video.title}}</h1>
+                </div>
+                <div class="col-xs-12">
+
+                    <div class="video-wrap"> <iframe title="Carl Cox Boiler Room Ibiza Villa Takeovers DJ Set" width="750" height="422" src="{{video.link}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                </div>
+                <div class="col-md-4 col-sm-5 col-xs-12 col-md-push-8 col-sm-push-7">
+                    <div class="sidebar">
+                        <div class="item">
+                            <table class="item-meta">
+                                <tbody>
+                                    <tr>
+                                        <th>Date</th>
+                                        <td>{{video.date | date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Location</th>
+                                        <td>{{video.location}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Category</th>
+                                        <td><a href="{{video.get_category_url}}" rel="tag">{{video.get_category_display}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-12 col-md-pull-4 col-sm-pull-5">
+                    <div class="entry-content">
+                        {{video.description | safe}}</div>
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+{% endblock content %}

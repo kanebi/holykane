@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+Video Masonry || Holykane
+{% endblock title %}
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="section-title">Videos Masonry</h3>
+                <ul class="filters-nav group">
+
+
+                    <li><a href="#filter" class="selected btn small transparent" data-filter="*">All Items</a></li>
+                    {% for key, category in video_categories %}
+
+                    <li><a href="#filter" class="btn small transparent" data-filter=".{{category}}">{{category}}</a></li>
+                    {% endfor %}
+                </ul>
+                <div class="row item-list list-masonry">
+                    {% for video in video_galleries %}
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-4  {{video.get_category_display}}">
+                        <div class="item post-155 cpt_video type-cpt_video status-publish has-post-thumbnail hentry video-category-guests video-category-live video-category-shows"> <a href="{{video.get_absolute_url}}" class="item-hold">
+                                <figure class="item-thumb"> <img width="750" height="528" src="{{video.cover.url}}" class="attachment-ci_masonry 
+                                size-ci_masonry wp-post-image" alt="" loading="lazy" srcset="{{video.cover.url}} 750w, {{video.cover.url}} 300w, {{video.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                            </a>
+                            <div class="item-info">
+                                <p class="item-title-main">{{video.title}}</p>
+                                <p class="item-byline">{{video.location}}</p>
+                            </div><a class="btn item-btn" href="{{video.get_absolute_url}}">Read More »</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <center>
+                        Nothing to show
+
+
+                    </center>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

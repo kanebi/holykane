@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{ load static %}
+
+{% block title %}
+Logout | Holykane Solo Artist
+{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<body>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <DIv></DIv>
+                <BR></BR>
+
+
+                <h1>Sign Out</h1>
+
+                <p>Are you sure you want to sign out?</p>
+
+                <form method="post" action="/accounts/logout/">
+                    {% csrf_token %}
+
+                    <button style="background-color: #fff;width: 100% ; color: black;" value="Sign out" type="submit" class="btn btn-primary">Sign out <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                </form>
+
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </div>
+    </div>
+</body>
+
+
+
+
+
+
+{% endblock %}

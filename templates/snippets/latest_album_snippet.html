@@ -1,0 +1,30 @@
+{% load disco_tags %}
+{% with request|get_latest_EP as latest_album %}
+
+
+<div class="widget-wrap ">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="section-title">Latest EP</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-xs-12"> <a class="item-hold" href="{{latest_album.get_absolute_url}}">
+                    <figure class="item-thumb"> <img width="750" height="750" src="{{latest_album.cover.url}}" class="attachment-ci_square size-ci_square wp-post-image" alt="" loading="lazy" srcset="{{latest_album.cover.url}} 750w, {{latest_album.cover.url}} 300w, {{latest_album.cover.url}} 150w, {{latest_album.cover.url}} 100w, {{latest_album.cover.url}} 110w, {{latest_album.cover.url}} 560w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+                </a><a class="btn item-btn" href="{{latest_album.get_absolute_url}}">Read More »</a></div>
+            <div class="col-sm-8 col-xs-12">
+                <ul class="tracklisting">
+
+                    {% for track in latest_album.songs.all %}
+
+                    {% include "snippets/track.html" with album=latest_album %}
+
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}

@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Order Detail - {{order.ref_code}} - Solo Artist
+{% endblock title %}
+
+
+{% block content %}
+
+<style>
+    .card {
+        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        /* background-color: #fff; */
+        background-clip: border-box;
+        border: 0 solid rgba(0, 0, 0, .125);
+        border-radius: 1rem;
+    }
+
+    .text-reset {
+        --bs-text-opacity: 1;
+        color: inherit !important;
+    }
+
+    a {
+        color: #5465ff;
+        text-decoration: none;
+    }
+
+
+
+    .cont-order-d {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        padding: 10px;
+
+    }
+</style>
+<div class="container-fluid cont-order-d">
+
+    <div class="container">
+        <!-- Title -->
+        <div class="d-flex justify-content-between align-items-center py-3">
+            <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #{{order.ref_code}}</h2>
+        </div>
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Details -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div>
+                                <span class="me-3">{{order.ordered_date | date}}</span>
+                                <span class="me-3">#{{order.ref_code}}</span>
+                                <span class="me-3">{{order.payment.get_method_display}}</span>
+                                <span class="badge rounded-pill bg-info">{{order.get_status_display}}</span>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text"><i class="bi bi-download"></i> <span class="text">Invoice</span></button>
+                                <div class="dropdown">
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> </a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Print</a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-borderless">
+                            <tbody>
+                                {% for cart in order.items.all %}
+
+                                <tr>
+                                    <td>
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-shrink-0">
+                                                <img src="{{cart.item.cover.url}}" alt="" width="100" height="100" class="img-fluid">
+                                            </div>
+                                            <div class="flex-lg-grow-1 ms-3">
+                                                <h6 class="small mb-0"><a href="#" class="text-reset">{{cart.item.title}}</a></h6>
+                                                <span class="small">Type :{{cart.item.get_type_display}}</span>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Qty. {{cart.quantity}}</td>
+                                    <td class="text-end">{{cart.get_final_sum_price}}
+                                        <a href="{{cart.item.get_shop_url}}" class=" btn btn-primary">View Item</a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Subtotal</td>
+                                    <td class="text-end">{{order.get_subtotal}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Shipping</td>
+                                    <td class="text-end">{{order.shipping_fee}}</td>
+                                </tr>
+                                <tr>
+
+                                    {% if order.coupon %}
+
+
+                                    <td colspan="2">Discount (Code: {{order.coupon.code}})</td>
+
+                                    <td class="text-danger text-end">-{{order.coupon.amount}}</td>
+                                    {% endif %}
+
+                                </tr>
+                                <tr class="fw-bold">
+                                    <td colspan="2">TOTAL</td>
+                                    <td class="text-end">{{order.get_total}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <!-- Payment -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3 class="h6">Payment Method</h3>
+                                <p>{{order.payment.get_method_display}} <br>
+
+                                    {% if order.payment.status == 's' %}
+
+
+                                    Total:{{order.payment.amount}} {{order.payment.currency}} <span class="badge bg-success rounded-pill">PAID</span></p>
+                                {% endif %}
+
+                            </div>
+                            <div class="col-lg-6">
+                                <h3 class="h6">Billing address</h3>
+                                <address>
+                                    <strong>{{order.billing_address.full_name}}</strong><br>
+                                    {{order.billing_address.apartment_address}}<br>
+                                    {{order.billing_address.state}}, {{order.billing_address.country}}<br>
+                                    <abbr title="email">E:</abbr> {{order.billing_address.email}}
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!-- Customer Notes -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <!-- Shipping information -->
+                    <div class="card-body">
+                        <h3 class="h6">Shipping Information</h3>
+                        <!-- <strong>FedEx</strong> -->
+                        <!-- <span><a href="#" class="text-decoration-underline" target="_blank">FF1234567890</a> <i class="bi bi-box-arrow-up-right"></i> </span> -->
+                        <hr>
+                        <h3 class="h6">Address</h3>
+                        <address>
+                            <strong>{{order.shipping_address.full_name}}</strong><br>
+                            {{order.shipping_address.apartment_address}}<br>
+                            {{order.shipping_address.state}}, {{order.shipping_address.country}}<br>
+                            <abbr title="email">E:</abbr> {{order.shipping_address.email}}
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

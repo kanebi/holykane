@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+Gallery Full View | {{ gallery.title }} | Holykane solo
+{% endblock title %}
+
+
+{% block content %}
+<main id="main">
+    <div class="container">
+        <article id="entry-65" class="entry post-65 cpt_gallery type-cpt_gallery status-publish has-post-thumbnail hentry gallery-category-concerts">
+            <h1 class="section-title"> {{gallery.title}}</h1>
+            <div class="row ">
+                {% for photo in gallery.images.all %}
+
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="item "> <a class="zoom" data-rel="prettyPhoto[gal]" href="{{photo.image.url}}">
+                            <figure class="item-thumb"> <img src="{{photo.image.url}}" alt=""></figure>
+                        </a></div>
+                </div>
+                {% endfor %}
+
+                <div class="col-xs-12">
+                    <div class="entry-content">
+                        {{gallery.description | safe}}
+
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+
+{% endblock content %}
