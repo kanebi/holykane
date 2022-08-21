@@ -1,4 +1,3 @@
-from this import d
 from django.utils import timezone
 from django_countries import Countries
 from events.models import Event

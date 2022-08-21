@@ -1,4 +1,3 @@
-from tkinter.messagebox import NO
 import uuid
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q, Count, Sum
@@ -8,7 +7,6 @@ from django.core import paginator
 from django.contrib import messages
 from shop.views import shop
 from shop.models import Album, ALBUM_CATEGORIES
-from tkinter.messagebox import NO
 import uuid
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q, Count, Sum
