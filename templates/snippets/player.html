@@ -478,6 +478,23 @@
         mouseDownHandler(e)
 
     })
+    jQuery('.sizer').on('click', (e) => {
+        if (Math.round(document.body.clientWidth) <= 510) {
+            if (ele.style.height.split('px')[0] >= 600) {
+
+                ele.style.height = `100px`;
+                ele.style.minHeight = `100px`;
+                ele.style.maxHeight = `100px`;
+            } else {
+
+
+                ele.style.height = `600px`;
+                ele.style.minHeight = `600px`;
+                ele.style.maxHeight = `600px`;
+            }
+        }
+
+    })
     for (let index = 0; index < jQuery('.playbtn').length; index++) {
         const element = jQuery(jQuery('.playbtn')[index]);
 
