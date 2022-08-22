@@ -3,4 +3,5 @@ from .models import Slides, HomePage, ContactPage, ContactUs, UserProfile, Heade
 # Register your models here.
 
 
-admin.site.register([Slides, HomePage, ContactPage, ContactUs, UserProfile])
+admin.site.register([Slides, HomePage, ContactPage,
+                    ContactUs, Header, UserProfile])
