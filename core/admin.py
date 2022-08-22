@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Slides, HomePage, ContactPage, ContactUs, UserProfile
+from .models import Slides, HomePage, ContactPage, ContactUs, UserProfile, Header
 # Register your models here.
 
 
