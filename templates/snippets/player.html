@@ -869,16 +869,16 @@
             jQuery('.favBtn').attr('data-track-fav-url', fav_url)
             jQuery('.art').attr('src', cover)
 
-            fetch(audio, { mode: "cors" },).then(function (response) {
-                console.log(response)
-                return response.blob()
-            }).then(function (audiofile) {
-                var audioblob = audiofile
-                console.log(audioblob)
-                wavesurfer.loadBlob(audioblob)
+            // fetch(audio, { mode: "cors" },).then(function (response) {
+            //     console.log(response)
+            //     return response.blob()
+            // }).then(function (audiofile) {
+            //     var audioblob = audiofile
+            //     console.log(audioblob)
+            //     wavesurfer.loadBlob(audioblob)
 
-            }).catch(err => console.log
-                ('err', err))
+            // }).catch(err => console.log
+            //     ('err', err))
 
             // wavesurfer.load(audio);
 
