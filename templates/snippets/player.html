@@ -835,7 +835,7 @@
 
             if (previouseTrack.pk != currentTrack.pk) {
                 if (!(previouseTrack.pk === undefined)) {
-                    fetch(stream_url).then(resp => { })
+                    fetch(stream_url, { mode: 'no-cors' }).then(resp => { })
 
 
                 }
