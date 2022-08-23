@@ -102,8 +102,6 @@
             visibility: visible
         }
     </style>
-    <script src="{% static 'js/wavesurfer.js' %}"></script>
-
     <link rel='stylesheet' id='ci-google-font-css' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C900%2C400italic&amp;ver=5.8.3' type='text/css' media='all' />
     <link rel='stylesheet' id='ci-base-css' href='{% static "wp-content/themes/chords/css/base.css" %}' type='text/css' media='all' />
     <link rel='stylesheet' id='ci-theme-common-css' href='{% static "wp-content/cache/busting/2/vip/solo/wp-content/themes/chords/common/css/global-2.7.1.css" %}' type='text/css' media='all' />
@@ -216,6 +214,7 @@
     </noscript>
     <!-- <script src="https://unpkg.com/wavesurfer.js"></script> -->
 
+    <script src="{% static 'js/wavesurfer.js' %}"></script>
 
 </head>
 
@@ -258,8 +257,6 @@
             c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
             document.body.className = c;
         })();</script>
-    <script src="{% static 'js/wavesurfer.js' %}"></script>
-
     <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/dist/vendor/regenerator-runtime.min-0.13.7.js" %}' id='regenerator-runtime-js' defer></script>
     <script type='text/javascript' src='{% static "wp-content/cache/busting/2/vip/solo/wp-includes/js/dist/vendor/wp-polyfill.min-3.15.0.js" %}' id='wp-polyfill-js' defer></script>
     <script type='text/javascript' id='contact-form-7-js-extra'>/* <![CDATA[ */ var wpcf7 = { "api": { "root": "https:\/\/www.cssigniter.com\/vip\/solo\/wp-json\/", "namespace": "contact-form-7\/v1" }, "cached": "1" }; /* ]]> */</script>

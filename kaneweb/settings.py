@@ -25,12 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+env_debug = True
 if str(config('DEBUG')) == 'False':
-    DEBUG = False
+    env_debug = False
 
+DEBUG = env_debug
 
-ALLOWED_HOSTS = [".herokuapp.com", '127.0.0.1',
+ALLOWED_HOSTS = ["herokuapp.com", '127.0.0.1',
                  'https://holykane.herokuapp.com/']
 
 # Application definition
@@ -202,28 +203,9 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_LOCATION = 'media-assets'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 MEDIA_URL = 'mediafiles/'
-if DEBUG == False:
-    DEFAULT_FILE_STORAGE = 'kaneweb.storage_backends.MediaStorage'
-
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'mysite/static'),
-# ]
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-STATIC_URL = 'static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 
 # STATICFILES_FINDERS = [
@@ -232,6 +214,31 @@ STATICFILES_DIRS = (
 #     # 'sass_processor.finders.CssFinder',
 #     # 'djangobower.finders.BowerFinder',
 # ]
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
+if DEBUG == True:
+    STATIC_URL = 'static/'
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
+
+if DEBUG == False:
+    DEFAULT_FILE_STORAGE = 'kaneweb.storage_backends.MediaStorage'
+
+    # STATICFILES_DIRS = [
+    #     os.path.join(BASE_DIR, 'holykane/hk-staticfiles'),
+    # ]
+
+    AWS_LOCATION = 'hk-staticfiles'
+
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
