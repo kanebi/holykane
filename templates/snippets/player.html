@@ -748,7 +748,7 @@
         responsive: true,
         xhr: {
             cache: "default",
-            mode: "no-cors",
+            mode: "cors",
             method: "GET",
             // credentials: "include",
             // headers: [
@@ -869,7 +869,18 @@
             jQuery('.favBtn').attr('data-track-fav-url', fav_url)
             jQuery('.art').attr('src', cover)
 
-            wavesurfer.load(audio);
+            fetch(audio, { mode: "cors" },).then(function (response) {
+                console.log(response)
+                return response.blob()
+            }).then(function (audiofile) {
+                var audioblob = audiofile
+                console.log(audioblob)
+                wavesurfer.loadBlob(audioblob)
+
+            }).catch(err => console.log
+                ('err', err))
+
+            // wavesurfer.load(audio);
 
         }
         if (playing === true) {

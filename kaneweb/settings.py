@@ -25,7 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = True
+if str(config('DEBUG')) == 'False':
+    DEBUG = False
+
 
 ALLOWED_HOSTS = [".herokuapp.com", '127.0.0.1',
                  'https://holykane.herokuapp.com/']
@@ -65,11 +68,15 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'phonenumber_field',
 ]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",
-    "http://127.0.0.1:9000",
-    'https://checkout.flutterwave.com'
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:8080",
+#     "http://127.0.0.1:9000",
+#     'https://checkout.flutterwave.com',
+#     "https://kaneprojectstorage.s3.us-east-2.amazonaws.com"
+# ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -199,7 +206,7 @@ AWS_LOCATION = 'media-assets'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 MEDIA_URL = 'mediafiles/'
-if str(DEBUG) == 'False':
+if DEBUG == False:
     DEFAULT_FILE_STORAGE = 'kaneweb.storage_backends.MediaStorage'
 
 
