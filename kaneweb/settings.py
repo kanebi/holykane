@@ -196,7 +196,11 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'media-assets'
-DEFAULT_FILE_STORAGE = 'kaneweb.storage_backends.MediaStorage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+MEDIA_URL = 'mediafiles/'
+if str(DEBUG) == 'False':
+    DEFAULT_FILE_STORAGE = 'kaneweb.storage_backends.MediaStorage'
 
 
 # STATICFILES_DIRS = [
@@ -208,8 +212,6 @@ DEFAULT_FILE_STORAGE = 'kaneweb.storage_backends.MediaStorage'
 STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-# MEDIA_URL = 'mediafiles/'
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 STATICFILES_DIRS = (
