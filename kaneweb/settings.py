@@ -31,7 +31,7 @@ if str(config('DEBUG')) == 'False':
 
 DEBUG = env_debug
 
-ALLOWED_HOSTS = ["herokuapp.com", '127.0.0.1',
+ALLOWED_HOSTS = [".herokuapp.com", "holykane", '127.0.0.1',
                  'https://holykane.herokuapp.com/']
 
 # Application definition
