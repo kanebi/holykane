@@ -741,8 +741,21 @@
 
     var wavesurfer = WaveSurfer.create({
         container: '.prog-bar-inner',
-        waveColor: 'violet',
-        progressColor: 'purple'
+        waveColor: "#D8D8D8",
+        progressColor: "#ED2784",
+        barRadius: 3,
+        cursorColor: "transparent",
+        responsive: true,
+        xhr: {
+            cache: "default",
+            mode: "cors",
+            method: "GET",
+            credentials: "include",
+            headers: [
+                { key: "cache-control", value: "no-cache" },
+                { key: "pragma", value: "no-cache" }
+            ]
+        }
     });
 
     jQuery('.next-track').on('click', () => {
